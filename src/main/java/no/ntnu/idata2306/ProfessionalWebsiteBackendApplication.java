@@ -9,5 +9,4 @@ public class ProfessionalWebsiteBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProfessionalWebsiteBackendApplication.class, args);
 	}
-
 }
