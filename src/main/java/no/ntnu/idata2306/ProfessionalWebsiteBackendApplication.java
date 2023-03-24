@@ -4,6 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+/**
+ * @author Edvin Astad
+ * @version 03.03.2023
+ */
 @SpringBootApplication
 @EnableJpaRepositories
 public class ProfessionalWebsiteBackendApplication {

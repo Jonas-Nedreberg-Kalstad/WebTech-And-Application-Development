@@ -1,17 +1,28 @@
-package no.ntnu.idata2306.data;
+package no.ntnu.idata2306.model;
+
+import no.ntnu.idata2306.security.PasswordGenerator;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import no.ntnu.idata2306.SecurityController;
+import jakarta.persistence.GenerationType;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+/**
+ * represent a user for the website
+ * @author Edvin Astad
+ * @version 17.03.2023
+ */
+
+@Schema(description = "Registered user on website", title = "User")
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
     @Column(name = "email", nullable = false)
@@ -28,35 +39,27 @@ public class User {
     /**
      * Constructor with parameters.
      *
-     * @param id id which will represent the user in the database.
      * @param email users email.
      * @param firstName first and middle name(s) name of user.
      * @param lastName surname of user.
      * @param password users password.
      */
-    public User(int id, String email, String firstName, String lastName, String password) {
+    public User(String email, String firstName, String lastName, String password) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.salt = SecurityController.generateSalt();
-        this.password = password;
+        this.salt = PasswordGenerator.generateSalt();
+        this.password = PasswordGenerator.hashPassword(password, salt);
     }
 
     /** Empty constructor */
     public User() {
     }
 
-
-
-    /** sets the value of fistName field to given value */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /** sets value of lastName field to given value */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    /** returns id */
+    public int getId() {
+        return id;
     }
 
     /** returns email */
@@ -85,11 +88,47 @@ public class User {
     }
 
     /**
+     * sets the value of id field to given value
+     * @param id id of user
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * sets the value of email field to given value
+     * @param email email of user
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * sets the value of firstName field to given value
+     * @param firstName first name of user.
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * sets the value of lastName field to given value
+     * @param lastName surname of user.
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
      * sets password to new password provided by user.
      *
      * @param password hash which will correspond with user password + salt.
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }
