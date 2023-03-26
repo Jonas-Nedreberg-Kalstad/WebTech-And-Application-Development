@@ -12,7 +12,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 /**
- * Responsible for populating database with dummy data for testing
+ * Responsible for populating database with dummy data for testing.
  *
  * @author Edvin Astad
  * @version 24.03.2023
@@ -20,51 +20,55 @@ import org.springframework.stereotype.Component;
 @Component
 public class DummyDataInitializer implements ApplicationListener<ApplicationReadyEvent> {
 
-    private UserRepository userRepository;
+  private UserRepository userRepository;
 
-    private ProductRepository productRepository;
+  private ProductRepository productRepository;
 
-    private final Logger logger = LoggerFactory.getLogger("DummyInit");
+  private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
-    @Override
-    public void onApplicationEvent(ApplicationReadyEvent event) {
-        if (userRepository.count() > 0 && productRepository.count() > 0) {
-            logger.info("Database already populated. Not importing any data");
-        } else {
-            logger.info("Importing test data...");
-            User jon = new User(
-                    "Jons@ntnu.no",
-                    "Jon",
-                    "Smith",
-                    "IDATA2024isbased");
+  @Override
+  public void onApplicationEvent(ApplicationReadyEvent event) {
+    if (userRepository.count() > 0 && productRepository.count() > 0) {
+      logger.info("Database already populated. Not importing any data");
+    } else {
 
-            User jenny = new User(
-                    "Jend@ntnu.no",
-                    "Jenny",
-                    "Dow",
-                    "FuckIDATA2024");
+      logger.info("Importing test data...");
 
-            Product consultation = new Product(
-                    "Consultation",
-                    100000,
-                    "Consultation services",
-                    "Consultants.jpeg"
-            );
+      User jon = new User(
+              "Jons@ntnu.no",
+              "Jon",
+              "Smith",
+              "IDATA2024isbased");
 
-            Product itSolution = new Product(
-                    "IT solution",
-                    150000,
-                    "It solution",
-                    "ItThings.jpeg"
-            );
+      userRepository.save(jon);
 
-            userRepository.save(jon);
-            userRepository.save(jenny);
+      User jenny = new User(
+              "Jend@ntnu.no",
+              "Jenny",
+              "Dow",
+              "FuckIDATA2024");
 
-            productRepository.save(consultation);
-            productRepository.save(itSolution);
+      userRepository.save(jenny);
 
-            logger.info("DONE importing test data");
-        }
+      Product consultation = new Product(
+              "Consultation",
+              100000,
+              "Consultation services",
+              "Consultants.jpeg"
+      );
+
+      productRepository.save(consultation);
+
+      Product itSolution = new Product(
+              "IT solution",
+              150000,
+              "It solution",
+              "ItThings.jpeg"
+      );
+
+      productRepository.save(itSolution);
+
+      logger.info("DONE importing test data");
     }
+  }
 }
