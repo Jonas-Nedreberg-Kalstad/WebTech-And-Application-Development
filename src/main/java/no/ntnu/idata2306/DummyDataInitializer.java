@@ -28,7 +28,9 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        if (userRepository.count() == 0 && productRepository.count() == 0) {
+        if (userRepository.count() > 0 && productRepository.count() > 0) {
+            logger.info("Database already populated. Not importing any data");
+        } else {
             logger.info("Importing test data...");
             User jon = new User(
                     "Jons@ntnu.no",
@@ -63,8 +65,6 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             productRepository.save(itSolution);
 
             logger.info("DONE importing test data");
-        } else {
-            logger.info("Database already populated. Not importing any data");
         }
     }
 }
