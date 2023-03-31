@@ -20,8 +20,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class DummyDataInitializer implements ApplicationListener<ApplicationReadyEvent> {
 
+  @Autowired
   private UserRepository userRepository;
 
+  @Autowired
   private ProductRepository productRepository;
 
   private final Logger logger = LoggerFactory.getLogger("DummyInit");
