@@ -6,7 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import no.ntnu.idata2306.security.PasswordGenerator;
+
+import static org.springframework.security.crypto.bcrypt.BCrypt.gensalt;
+import static org.springframework.security.crypto.bcrypt.BCrypt.hashpw;
 
 /**
  * represent a user for the website.
@@ -19,17 +21,17 @@ import no.ntnu.idata2306.security.PasswordGenerator;
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id", nullable = false)
+  @Column(name = "id", nullable = false, unique = true)
   private int id;
-  @Column(name = "email", nullable = false)
+  @Column(name = "email", nullable = false, unique = true, updatable = false)
   private String email;
-  @Column(name = "first name", nullable = false)
+  @Column(name = "first name", nullable = false, unique = false)
   private String firstName;
-  @Column(name = "last name", nullable = false)
+  @Column(name = "last name", nullable = false, unique = false)
   private String lastName;
-  @Column(name = "password", nullable = false)
+  @Column(name = "password", nullable = false, unique = false)
   private String password;
-  @Column(name = "salt", nullable = false)
+  @Column(name = "salt", nullable = false, unique = false, updatable = false)
   private String salt;
 
   /**
@@ -41,12 +43,11 @@ public class User {
    * @param password  users password.
    */
   public User(String email, String firstName, String lastName, String password) {
-    this.id = id;
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.salt = PasswordGenerator.generateSalt();
-    this.password = PasswordGenerator.hashPassword(password, salt);
+    this.salt = gensalt();
+    this.password = hashpw(password, salt);
   }
 
   /**
