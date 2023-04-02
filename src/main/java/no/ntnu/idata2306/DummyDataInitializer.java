@@ -17,60 +17,58 @@ import org.springframework.stereotype.Component;
  * @author Edvin Astad
  * @version 24.03.2023
  */
-@Component
-public class DummyDataInitializer implements ApplicationListener<ApplicationReadyEvent> {
-
-  @Autowired
-  private UserRepository userRepository;
-
-  @Autowired
-  private ProductRepository productRepository;
-
-  private final Logger logger = LoggerFactory.getLogger("DummyInit");
-
-  @Override
-  public void onApplicationEvent(ApplicationReadyEvent event) {
-    if (userRepository.count() > 0 && productRepository.count() > 0) {
-      logger.info("Database already populated. Not importing any data");
-    } else {
-
-      logger.info("Importing test data...");
-
-      User jon = new User(
-              "Jons@ntnu.no",
-              "Jon",
-              "Smith",
-              "IDATA2024isbased");
-
-      userRepository.save(jon);
-
-      User jenny = new User(
-              "Jend@ntnu.no",
-              "Jenny",
-              "Dow",
-              "FuckIDATA2024");
-
-      userRepository.save(jenny);
-
-      Product consultation = new Product(
-              "Consultation",
-              100000,
-              "Consultation services",
-              "Consultants.jpeg"
-      );
-
-      productRepository.save(consultation);
-
-      Product itSolution = new Product(
-              "IT solution",
-              150000,
-              "It solution",
-              "ItThings.jpeg"
-      );
-
-      productRepository.save(itSolution);
-
-      logger.info("DONE importing test data");
-    }
-  }
-}
+//@Component
+//public class DummyDataInitializer implements ApplicationListener<ApplicationReadyEvent> {
+//
+//  private UserRepository userRepository;
+//
+//  private ProductRepository productRepository;
+//
+//  private final Logger logger = LoggerFactory.getLogger("DummyInit");
+//
+//  @Override
+//  public void onApplicationEvent(ApplicationReadyEvent event) {
+//    if (userRepository.count() > 0 && productRepository.count() > 0) {
+//      logger.info("Database already populated. Not importing any data");
+//    } else {
+//
+//      logger.info("Importing test data...");
+//
+//      User jon = new User(
+//              "Jons@ntnu.no",
+//              "Jon",
+//              "Smith",
+//              "IDATA2024isbased");
+//
+//      userRepository.save(jon);
+//
+//      User jenny = new User(
+//              "Jend@ntnu.no",
+//              "Jenny",
+//              "Dow",
+//              "FuckIDATA2024");
+//
+//      userRepository.save(jenny);
+//
+//      Product consultation = new Product(
+//              "Consultation",
+//              100000,
+//              "Consultation services",
+//              "Consultants.jpeg"
+//      );
+//
+//      productRepository.save(consultation);
+//
+//      Product itSolution = new Product(
+//              "IT solution",
+//              150000,
+//              "It solution",
+//              "ItThings.jpeg"
+//      );
+//
+//      productRepository.save(itSolution);
+//
+//      logger.info("DONE importing test data");
+//    }
+//  }
+//}
