@@ -77,6 +77,8 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
         productRepository.save(itSolution);
 
+
+
         logger.info("DONE importing test data");
       } else {
         logger.info("Database already populated.");
