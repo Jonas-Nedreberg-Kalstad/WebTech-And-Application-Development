@@ -1,5 +1,8 @@
 package no.ntnu.idata2306.model;
 
+import static org.springframework.security.crypto.bcrypt.BCrypt.gensalt;
+import static org.springframework.security.crypto.bcrypt.BCrypt.hashpw;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,8 +10,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import static org.springframework.security.crypto.bcrypt.BCrypt.gensalt;
-import static org.springframework.security.crypto.bcrypt.BCrypt.hashpw;
 
 /**
  * represent a user for the website.

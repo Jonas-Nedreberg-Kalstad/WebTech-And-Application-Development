@@ -1,14 +1,13 @@
 package no.ntnu.idata2306.services;
 
+import java.util.Optional;
 import no.ntnu.idata2306.model.User;
 import no.ntnu.idata2306.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
-import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 /**
  * Business logic for User.
@@ -19,7 +18,7 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-  private final static int MIN_PASSWORD_LENGTH = 8;
+  private static final int MIN_PASSWORD_LENGTH = 8;
 
   private UserRepository userRepository;
 

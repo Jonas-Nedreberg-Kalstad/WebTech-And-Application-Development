@@ -29,7 +29,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
   /**
    * Creates a new instance of DummyDataInitializer.
    *
-   * @param userRepository userRepository
+   * @param userRepository    userRepository
    * @param productRepository productRepository
    */
   public DummyDataInitializer(UserRepository userRepository, ProductRepository productRepository) {
@@ -40,48 +40,47 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
   @Override
   public void onApplicationEvent(ApplicationReadyEvent event) {
 
-      logger.info("Importing test data...");
+    logger.info("Importing test data...");
 
-      if (userRepository.count() == 0 && productRepository.count() == 0) {
-        User jon = new User(
-                "Jons@ntnu.no",
-                "Jon",
-                "Smith",
-                "IDATA2024isbased");
+    if (userRepository.count() == 0 && productRepository.count() == 0) {
+      User jon = new User(
+              "Jons@ntnu.no",
+              "Jon",
+              "Smith",
+              "IDATA2024isbased");
 
-        userRepository.save(jon);
+      userRepository.save(jon);
 
-        User jenny = new User(
-                "Jend@ntnu.no",
-                "Jenny",
-                "Dow",
-                "FuckIDATA2024");
+      User jenny = new User(
+              "Jend@ntnu.no",
+              "Jenny",
+              "Dow",
+              "FuckIDATA2024");
 
-        userRepository.save(jenny);
+      userRepository.save(jenny);
 
-        Product consultation = new Product(
-                "Consultation",
-                100000,
-                "Consultation services",
-                "Consultants.jpeg"
-        );
+      Product consultation = new Product(
+              "Consultation",
+              100000,
+              "Consultation services",
+              "Consultants.jpeg"
+      );
 
-        productRepository.save(consultation);
+      productRepository.save(consultation);
 
-        Product itSolution = new Product(
-                "IT solution",
-                150000,
-                "It solution",
-                "ItThings.jpeg"
-        );
+      Product itSolution = new Product(
+              "IT solution",
+              150000,
+              "It solution",
+              "ItThings.jpeg"
+      );
 
-        productRepository.save(itSolution);
+      productRepository.save(itSolution);
 
 
-
-        logger.info("DONE importing test data");
-      } else {
-        logger.info("Database already populated.");
-      }
+      logger.info("DONE importing test data");
+    } else {
+      logger.info("Database already populated.");
     }
+  }
 }
