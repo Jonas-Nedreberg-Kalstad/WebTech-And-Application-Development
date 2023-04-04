@@ -14,7 +14,7 @@ import jakarta.persistence.*;
 public class Image {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id", nullable = false, updatable = false)
+  @Column(name = "image_id", nullable = false, updatable = false)
   private int id;
   @Column(name = "image", nullable = false)
   private String image;
