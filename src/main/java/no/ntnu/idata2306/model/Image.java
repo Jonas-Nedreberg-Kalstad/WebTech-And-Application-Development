@@ -11,6 +11,7 @@ import jakarta.persistence.*;
 @Embeddable
 public class Image {
   private String imageLink;
+
   private String imageDescription;
 
   /** Empty constructor. */
@@ -28,7 +29,6 @@ public class Image {
     this.imageDescription = description;
   }
 
-
   /** Returns imageLink. */
   public String getImageLink() {
     return imageLink;
@@ -38,7 +38,6 @@ public class Image {
   public String getImageDescription() {
     return imageDescription;
   }
-
 
   /**
    * Sets the value of the image field to given value.
