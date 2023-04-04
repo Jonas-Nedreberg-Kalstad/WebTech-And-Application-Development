@@ -35,54 +35,90 @@ public class AccessUserDetails implements UserDetails {
     }
   }
 
+  /**
+   * Returns authorities of user.
+   * @return authoresses
+   */
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return authorities;
   }
 
+  /**
+   * Returns password.
+   */
   @Override
   public String getPassword() {
     return password;
   }
 
+  /**
+   * Returns the username used for login in, which is user email.
+   *
+   * @return email
+   */
   @Override
   public String getUsername() {
     return email;
   }
 
+  /**
+   * Checks if account is expired.
+   *
+   * @return active
+   */
   @Override
   public boolean isAccountNonExpired() {
     return active;
   }
 
+  /**
+   * Checks if account is locked.
+   *
+   * @return active
+   */
   @Override
   public boolean isAccountNonLocked() {
     return active;
   }
 
+  /**
+   * Checks if credentials are expired.
+   *
+   * @return active
+   */
   @Override
   public boolean isCredentialsNonExpired() {
     return active;
   }
 
+  /**
+   * Checks if account is enabled.
+   *
+   * @return active
+   */
   @Override
   public boolean isEnabled() {
     return true;
   }
 
+  /** Returns email. */
   public String getEmail() {
     return email;
   }
 
+  /** Returns first name */
   public String getFirstName() {
     return firstName;
   }
 
+  /** Returns last name. */
   public String getLastName() {
     return lastName;
   }
 
-  public boolean isActive() {
+  /** Returns active. */
+  public boolean getActive() {
     return active;
   }
 }

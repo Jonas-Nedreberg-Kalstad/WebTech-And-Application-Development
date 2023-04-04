@@ -43,6 +43,9 @@ public class User {
   )
   private Set<Role> roles = new LinkedHashSet<>();
 
+  @OneToMany()
+  private Set<Order> orders = new LinkedHashSet<>();
+
   /**
    * Constructor with parameters.
    *
@@ -132,13 +135,27 @@ public class User {
     return roles;
   }
 
+  /** Returns orders */
+  public Set<Order> getOrders() {
+    return orders;
+  }
+
   /**
    * Adds role.
    *
    * @param role role
    */
   public void addRole(Role role) {
-    roles.add(role);
+    this.roles.add(role);
+  }
+
+  /**
+   * Adds order.
+   *
+   * @param order order
+   */
+  public void addOrder(Order order) {
+    this.orders.add(order);
   }
 
   /**
@@ -212,5 +229,14 @@ public class User {
    */
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
+  }
+
+  /**
+   * Sets the value of the orders filed to given value.
+   *
+   * @param orders
+   */
+  public void setOrders(Set<Order> orders) {
+    this.orders = orders;
   }
 }

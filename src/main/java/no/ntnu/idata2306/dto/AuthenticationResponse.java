@@ -8,4 +8,12 @@ package no.ntnu.idata2306.dto;
  * @version 04.04.2023
  */
 public record AuthenticationResponse(String jwt) {
+
+  /**
+   * Returns jwt.
+   */
+  @Override
+  public String jwt() {
+    return jwt;
+  }
 }

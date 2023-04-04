@@ -3,6 +3,10 @@ package no.ntnu.idata2306.dto;
 /**
  * Represents data from user needed to sign up.
  *
+ * @param email     email
+ * @param firstName first name
+ * @param lastName  last name
+ * @param password  password
  * @author Edvin Astad
  * @version 04.04.2023
  */
