@@ -28,7 +28,7 @@ public class Product {
   @Embedded
   private Image image;
   @OneToMany(mappedBy = "product")
-  private Set<Order> orders = new LinkedHashSet<>();
+  private Set<Orders> orders = new LinkedHashSet<>();
 
   /**
    * Creates a new instance of Product.

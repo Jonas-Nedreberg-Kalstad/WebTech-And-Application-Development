@@ -44,7 +44,7 @@ public class User {
   private Set<Role> roles = new LinkedHashSet<>();
 
   @OneToMany(mappedBy = "customer")
-  private Set<Order> orders = new LinkedHashSet<>();
+  private Set<Orders> orders = new LinkedHashSet<>();
 
   /**
    * Constructor with parameters.
@@ -136,7 +136,7 @@ public class User {
   }
 
   /** Returns orders */
-  public Set<Order> getOrders() {
+  public Set<Orders> getOrders() {
     return orders;
   }
 
@@ -154,7 +154,7 @@ public class User {
    *
    * @param order order
    */
-  public void addOrder(Order order) {
+  public void addOrder(Orders order) {
     this.orders.add(order);
   }
 
@@ -236,7 +236,7 @@ public class User {
    *
    * @param orders
    */
-  public void setOrders(Set<Order> orders) {
+  public void setOrders(Set<Orders> orders) {
     this.orders = orders;
   }
 }
