@@ -1,27 +1,17 @@
 package no.ntnu.idata2306.model;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 /**
- * Represents an image which is to be displayed on the wbsite.
+ * Represents an image which is to be displayed on the website.
  *
  * @author Edvin Astad
  * @version 04.04.2023
  */
-@Schema(name = "images", description = "Images for website")
-@Entity
+@Embeddable
 public class Image {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "image_id", nullable = false, updatable = false)
-  private int id;
-  @Column(name = "image", nullable = false)
-  private String image;
-  @Column(name = "description")
-  private String description;
-  @OneToOne(mappedBy = "image")
-  private Product product;
+  private String imageLink;
+  private String imageDescription;
 
   /** Empty constructor. */
   public Image() {
@@ -30,67 +20,41 @@ public class Image {
   /**
    * Creates a new instance of Image.
    *
-   * @param image image
+   * @param imageLink image
    * @param description description
    */
-  public Image(String image, String description) {
-    this.image = image;
-    this.description = description;
+  public Image(String imageLink, String description) {
+    this.imageLink = imageLink;
+    this.imageDescription = description;
   }
 
-  /** Returns id. */
-  public int getId() {
-    return id;
+
+  /** Returns imageLink. */
+  public String getImageLink() {
+    return imageLink;
   }
 
-  /** Returns image. */
-  public String getImage() {
-    return image;
+  /** Returns imageDescription. */
+  public String getImageDescription() {
+    return imageDescription;
   }
 
-  /** Returns description. */
-  public String getDescription() {
-    return description;
-  }
-
-  /** Returns product. */
-  public Product getProduct() {
-    return product;
-  }
-
-  /**
-   * Sets the value of the id field to given value.
-   *
-   * @param id id
-   */
-  public void setId(int id) {
-    this.id = id;
-  }
 
   /**
    * Sets the value of the image field to given value.
    *
-   * @param image image
+   * @param imageLink image
    */
-  public void setImage(String image) {
-    this.image = image;
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
   }
 
   /**
-   * Sets the value of the description field to given value.
+   * Sets the value of the imageDescription field to given value.
    *
-   * @param description description
+   * @param imageDescription description
    */
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  /**
-   * Sets the value of the product field to given value.
-   *
-   * @param product product
-   */
-  public void setProduct(Product product) {
-    this.product = product;
+  public void setImageDescription(String imageDescription) {
+    this.imageDescription = imageDescription;
   }
 }

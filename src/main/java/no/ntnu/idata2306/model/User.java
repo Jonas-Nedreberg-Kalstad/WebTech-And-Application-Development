@@ -43,7 +43,7 @@ public class User {
   )
   private Set<Role> roles = new LinkedHashSet<>();
 
-  @OneToMany()
+  @OneToMany(mappedBy = "customer")
   private Set<Order> orders = new LinkedHashSet<>();
 
   /**
