@@ -25,13 +25,13 @@ public class Orders {
 
   @ManyToOne()
   @JoinColumns({
-          @JoinColumn(name = "product_id", referencedColumnName = "id", insertable = false, updatable = false)
+          @JoinColumn(name = "product_id", referencedColumnName = "id")
   })
   private Product product;
 
   @ManyToOne()
   @JoinColumns({
-          @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+          @JoinColumn(name = "user_id", referencedColumnName = "id")
   })
   private User customer;
 
