@@ -27,11 +27,7 @@ public class Product {
   private String description;
   //Image stored as String which represents the filename of the image.
   @OneToOne(cascade = CascadeType.ALL)
-  @JoinTable(name = "image",
-          joinColumns =
-                  { @JoinColumn(name = "product_id", referencedColumnName = "id") },
-          inverseJoinColumns =
-                  { @JoinColumn(name = "image_id", referencedColumnName = "id") })
+  @JoinColumn(name = "image_id", referencedColumnName = "image_id")
   private Image image;
 
   @OneToMany
