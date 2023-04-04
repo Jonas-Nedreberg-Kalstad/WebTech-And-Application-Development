@@ -38,12 +38,12 @@ public class Image {
     this.description = description;
   }
 
-  /** Returns id */
+  /** Returns id. */
   public int getId() {
     return id;
   }
 
-  /** Returns image */
+  /** Returns image. */
   public String getImage() {
     return image;
   }
@@ -53,7 +53,7 @@ public class Image {
     return description;
   }
 
-  /** Returns product */
+  /** Returns product. */
   public Product getProduct() {
     return product;
   }

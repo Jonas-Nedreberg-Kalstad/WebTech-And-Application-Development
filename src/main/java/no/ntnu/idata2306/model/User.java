@@ -133,6 +133,15 @@ public class User {
   }
 
   /**
+   * Adds role.
+   *
+   * @param role role
+   */
+  public void addRole(Role role) {
+    roles.add(role);
+  }
+
+  /**
    * sets the value of id field to given value.
    *
    * @param id id of user

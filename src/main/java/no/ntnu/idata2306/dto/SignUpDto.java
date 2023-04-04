@@ -14,7 +14,7 @@ public record SignUpDto(String email, String firstName, String lastName, String 
   }
 
   /**
-   * returns email
+   * returns email.
    */
   @Override
   public String email() {
@@ -22,7 +22,7 @@ public record SignUpDto(String email, String firstName, String lastName, String 
   }
 
   /**
-   * returns firstName
+   * returns firstName.
    */
   @Override
   public String firstName() {
@@ -30,7 +30,7 @@ public record SignUpDto(String email, String firstName, String lastName, String 
   }
 
   /**
-   * returns lastName
+   * returns lastName.
    */
   @Override
   public String lastName() {
@@ -38,7 +38,7 @@ public record SignUpDto(String email, String firstName, String lastName, String 
   }
 
   /**
-   * returns password
+   * returns password.
    */
   @Override
   public String password() {

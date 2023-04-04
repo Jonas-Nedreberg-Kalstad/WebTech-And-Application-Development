@@ -10,7 +10,7 @@ public class AuthenticationRequest {
   private String email;
   private String password;
 
-  /** Empty constructor */
+  /** Empty constructor. */
   public AuthenticationRequest() {
   }
 
@@ -25,7 +25,7 @@ public class AuthenticationRequest {
     this.password = password;
   }
 
-  /** returns email */
+  /** Returns email. */
   public String getEmail() {
     return email;
   }
@@ -38,6 +38,7 @@ public class AuthenticationRequest {
   public void setEmail(String email) {
     this.email = email;
   }
+
   /** Returns password. */
   public String getPassword() {
     return password;
@@ -46,7 +47,7 @@ public class AuthenticationRequest {
   /**
    * sets the value of the password field to given value.
    *
-   * @param password
+   * @param password password
    */
   public void setPassword(String password) {
     this.password = password;
