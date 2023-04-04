@@ -4,7 +4,6 @@ import no.ntnu.idata2306.model.Image;
 import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.model.Role;
 import no.ntnu.idata2306.model.User;
-import no.ntnu.idata2306.repositories.ImageRepository;
 import no.ntnu.idata2306.repositories.ProductRepository;
 import no.ntnu.idata2306.repositories.RoleRepository;
 import no.ntnu.idata2306.repositories.UserRepository;
@@ -13,8 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
-
-import java.util.HashSet;
 
 /**
  * Responsible for populating database with dummy data for testing.
@@ -29,8 +26,6 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
   private final ProductRepository productRepository;
 
-  private final ImageRepository imageRepository;
-
   private final RoleRepository roleRepository;
 
   private final Logger logger = LoggerFactory.getLogger("DummyInit");
@@ -40,27 +35,19 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
    *
    * @param userRepository    userRepository
    * @param productRepository productRepository
-   * @param imageRepository   imageRepository
    * @param roleRepository    roleRepository
    */
   public DummyDataInitializer(UserRepository userRepository,
                               ProductRepository productRepository,
-                              ImageRepository imageRepository,
                               RoleRepository roleRepository
   ) {
     this.userRepository = userRepository;
     this.productRepository = productRepository;
-    this.imageRepository = imageRepository;
     this.roleRepository = roleRepository;
   }
 
   @Override
   public void onApplicationEvent(ApplicationReadyEvent event) {
-
-    Image image1 = new Image("ItThings.jpeg", "Image of our some fancy IT things "
-            + "(it has nothing to do with our product).");
-
-    imageRepository.save(image1);
 
 
 
@@ -70,6 +57,10 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
 
     if (userRepository.count() == 0 && productRepository.count() == 0) {
+
+      Image image1 = new Image("ItThings.jpeg", "Image of our some fancy IT things "
+              + "(it has nothing to do with our product).");
+
 
       Role user = new Role("user");
       Role admin = new Role("admin");
@@ -108,11 +99,11 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
       Product itSolution = new Product(
               "IT solution",
               150000,
-              "It solution"
+              "It solution",
+              image1
 
       );
 
-      //itSolution.setImage(image1);
       productRepository.save(itSolution);
 
 

@@ -22,9 +22,8 @@ public class Product {
   private double price;
   @Column(name = "description", nullable = false)
   private String description;
-  //Image stored as String which represents the filename of the image.
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "image_id", referencedColumnName = "image_id")
+
+  @Embedded
   private Image image;
 
   /**
