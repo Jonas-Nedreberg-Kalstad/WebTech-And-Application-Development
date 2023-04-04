@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * @version 04.04.2023
  */
 @Entity
-public class Order {
+public class Orders {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false, updatable = false)
@@ -36,17 +36,17 @@ public class Order {
   private User customer;
 
   /** Empty constructor. */
-  public Order() {
+  public Orders() {
   }
 
   /**
-   * Creates a new instance of Order.
+   * Creates a new instance of Orders.
    *
    * @param date date of sale
    * @param product product
    * @param customer costumer
    */
-  public Order(LocalDateTime date, Product product, User customer) {
+  public Orders(LocalDateTime date, Product product, User customer) {
     this.salePrice = product.getPrice();
     this.date = date;
     this.product = product;

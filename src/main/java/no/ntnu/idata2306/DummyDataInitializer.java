@@ -1,9 +1,7 @@
 package no.ntnu.idata2306;
 
-import no.ntnu.idata2306.model.Image;
-import no.ntnu.idata2306.model.Product;
-import no.ntnu.idata2306.model.Role;
-import no.ntnu.idata2306.model.User;
+import no.ntnu.idata2306.model.*;
+import no.ntnu.idata2306.repositories.OrderRepository;
 import no.ntnu.idata2306.repositories.ProductRepository;
 import no.ntnu.idata2306.repositories.RoleRepository;
 import no.ntnu.idata2306.repositories.UserRepository;
@@ -12,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 
 /**
  * Responsible for populating database with dummy data for testing.
@@ -28,6 +28,8 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
   private final RoleRepository roleRepository;
 
+  private final OrderRepository orderRepository;
+
   private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
   /**
@@ -36,14 +38,16 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
    * @param userRepository    userRepository
    * @param productRepository productRepository
    * @param roleRepository    roleRepository
+   * @param orderRepository   orderRepository
    */
   public DummyDataInitializer(UserRepository userRepository,
                               ProductRepository productRepository,
-                              RoleRepository roleRepository
-  ) {
+                              RoleRepository roleRepository,
+                              OrderRepository orderRepository) {
     this.userRepository = userRepository;
     this.productRepository = productRepository;
     this.roleRepository = roleRepository;
+    this.orderRepository = orderRepository;
   }
 
   @Override
@@ -56,7 +60,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
 
 
-    if (userRepository.count() == 0 && productRepository.count() == 0) {
+    if (userRepository.count() == 0 && productRepository.count() == 0 && orderRepository.count() == 0) {
 
       Image image1 = new Image("ItThings.jpeg", "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
@@ -105,6 +109,9 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
       );
 
       productRepository.save(itSolution);
+
+      Orders order = new Orders(LocalDateTime.now(), itSolution, jenny);
+      orderRepository.save(order);
 
       logger.info("DONE importing test data");
     } else {
