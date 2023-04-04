@@ -1,11 +1,7 @@
 package no.ntnu.idata2306.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 /**
  * represents a product available on the website.
@@ -18,7 +14,7 @@ import jakarta.persistence.Id;
 public class Product {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id", nullable = false)
+  @Column(name = "id", nullable = false, updatable = false)
   private int id;
   @Column(name = "name", nullable = false)
   private String productName;
@@ -27,8 +23,13 @@ public class Product {
   @Column(name = "description", nullable = false)
   private String description;
   //Image stored as String which represents the filename of the image.
-  @Column(name = "image", nullable = false)
-  private String image;
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinTable(name = "image",
+          joinColumns =
+                  { @JoinColumn(name = "product_id", referencedColumnName = "id") },
+          inverseJoinColumns =
+                  { @JoinColumn(name = "image_id", referencedColumnName = "id") })
+  private Image image;
 
   /**
    * Creates a new instance of Product.
@@ -38,11 +39,24 @@ public class Product {
    * @param description description
    * @param image       hyperlink to image
    */
-  public Product(String productName, double price, String description, String image) {
+  public Product(String productName, double price, String description, Image image) {
     this.productName = productName;
     this.price = price;
     this.description = description;
     this.image = image;
+  }
+
+  /**
+   * Creates a new instance of Product.
+   *
+   * @param productName product name
+   * @param price       price
+   * @param description description
+   */
+  public Product(String productName, double price, String description) {
+    this.productName = productName;
+    this.price = price;
+    this.description = description;
   }
 
   /**
@@ -82,7 +96,7 @@ public class Product {
   /**
    * returns image.
    */
-  public String getImage() {
+  public Image getImage() {
     return image;
   }
 
@@ -127,7 +141,7 @@ public class Product {
    *
    * @param image image associated with product
    */
-  public void setImage(String image) {
+  public void setImage(Image image) {
     this.image = image;
   }
 }

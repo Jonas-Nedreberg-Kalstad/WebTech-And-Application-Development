@@ -1,12 +1,13 @@
 package no.ntnu.idata2306.services;
 
 import java.util.Optional;
+
+import no.ntnu.idata2306.dto.SignUpDto;
 import no.ntnu.idata2306.model.User;
 import no.ntnu.idata2306.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,8 +20,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
   private static final int MIN_PASSWORD_LENGTH = 8;
-
-  private UserRepository userRepository;
+  private final UserRepository userRepository;
 
   /**
    * creates a new instance of userService.
@@ -34,30 +34,27 @@ public class UserService {
   /**
    * Creates a new user if params are valid and email is not yet registered.
    *
-   * @param email email
-   * @param firstname fist name
-   * @param lastName last name
-   * @param password password in plain text
+   * @param userInfo information provided by SignUpDto instance
    * @return true if user is created, false otherwise.
    */
-  public boolean createNewUser(String email, String firstname, String lastName, String password) {
-    if (!validEmail(email)) {
+  public boolean createUser(SignUpDto userInfo) {
+    if (!validEmail(userInfo.email())) {
       throw new IllegalArgumentException("Invalid email format.");
     }
 
-    if (!validPassword(password)) {
+    if (!validPassword(userInfo.password())) {
       throw new IllegalArgumentException("Invalid password.");
     }
 
-    if (firstname.trim().equals("") || lastName.trim().equals("")) {
+    if (userInfo.firstName().trim().equals("") || userInfo.lastName().trim().equals("")) {
       throw new IllegalArgumentException("Name fields must be filled out.");
     }
 
     boolean userCreated = false;
     try {
-      findUserByEmail(email);
+      findUserByEmail(userInfo.email());
     } catch (NullPointerException e) {
-      userRepository.save(new User(email, firstname, lastName, password));
+      userRepository.save(new User(userInfo));
       userCreated = true;
     }
 
@@ -83,21 +80,46 @@ public class UserService {
   /**
    * Checks if a submitted email follows the email format.
    *
+   * <b>Currently checks if:
+   * -email contains an @-symbol, and only one @-symbol
+   * -email does not contain empty spaces
+   * -there is at least one character before the @-symbol
+   * -there is at least one full stop after @-symbol
+   * -there are no instances of two full stops with no text in between
+   * -there are at least one character before and after the first and last full stop after the @-symbol</b>
+   *
    * @param potentialEmail submitted email
    * @return true if submitted email is following a valid format, false otherwise.
    */
   private static boolean validEmail(String potentialEmail) {
     boolean valid = false;
+    //Confirms the String contains a @-symbol.
     boolean containsAt = potentialEmail.contains("@");
+    //Checks for spaces which are not allowed in an email address.
     boolean containsSpace = potentialEmail.contains(" ");
     if (containsAt && !containsSpace) {
       String[] splitString = potentialEmail.split("@");
+      //If there is exactly one @-symbol int the String the split will produce an array of length 2.
       boolean oneAt = splitString.length == 2;
       if (oneAt) {
         String s1 = splitString[0];
         String s2 = splitString[1];
+        //The first part of en emil address can not be empty.
         boolean s1Valid = s1.length() > 0;
-        boolean s2Valid = s2.length() > 2 && s2.contains(".");
+        //The second part of an email address must be at least 3 characters long and contain a full stop.
+        boolean s2Valid = s2.contains(".");
+        if (s2Valid) {
+          String[] s2Sections = s2.split(".");
+          int i = 0;
+          //Checks if each section is empty.
+          while (s2Valid && i < s2Sections.length) {
+            String currentSection = s2Sections[0];
+            if (currentSection.equals("")) {
+              s2Valid = false;
+            }
+            i++;
+          }
+        }
         valid = s1Valid && s2Valid;
       }
     } else {
@@ -115,4 +137,17 @@ public class UserService {
   private static boolean validPassword(String password) {
     return !password.contains(" ") && password.length() > MIN_PASSWORD_LENGTH;
   }
+
+  /**
+   * Returns the user of the curren session.
+   *
+   * @return user of current session, null if there is no user in session.
+   */
+  public User getSessionUser() {
+    SecurityContext securityContext = SecurityContextHolder.getContext();
+    Authentication authentication = securityContext.getAuthentication();
+    String email = authentication.getName();
+    return userRepository.findByEmail(email).orElse(null);
+  }
+
 }

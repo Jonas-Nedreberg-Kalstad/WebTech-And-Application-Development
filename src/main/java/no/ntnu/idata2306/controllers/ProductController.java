@@ -22,8 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RestController
 public class ProductController {
-  private ProductService productService;
+  private final ProductService productService;
 
+  /**
+   * Creates a new instance of ProductController.
+   *
+   * @param productService productService
+   */
   public ProductController(ProductService productService) {
     this.productService = productService;
   }

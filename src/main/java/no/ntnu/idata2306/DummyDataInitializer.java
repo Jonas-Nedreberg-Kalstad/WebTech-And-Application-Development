@@ -1,15 +1,20 @@
 package no.ntnu.idata2306;
 
+import no.ntnu.idata2306.model.Image;
 import no.ntnu.idata2306.model.Product;
+import no.ntnu.idata2306.model.Role;
 import no.ntnu.idata2306.model.User;
+import no.ntnu.idata2306.repositories.ImageRepository;
 import no.ntnu.idata2306.repositories.ProductRepository;
+import no.ntnu.idata2306.repositories.RoleRepository;
 import no.ntnu.idata2306.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+
+import java.util.HashSet;
 
 /**
  * Responsible for populating database with dummy data for testing.
@@ -20,9 +25,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class DummyDataInitializer implements ApplicationListener<ApplicationReadyEvent> {
 
-  private UserRepository userRepository;
+  private final UserRepository userRepository;
 
-  private ProductRepository productRepository;
+  private final ProductRepository productRepository;
+
+  private final ImageRepository imageRepository;
+
+  private final RoleRepository roleRepository;
 
   private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
@@ -31,10 +40,14 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
    *
    * @param userRepository    userRepository
    * @param productRepository productRepository
+   * @param imageRepository   imageRepository
+   * @param roleRepository    roleRepository
    */
-  public DummyDataInitializer(UserRepository userRepository, ProductRepository productRepository) {
+  public DummyDataInitializer(UserRepository userRepository, ProductRepository productRepository, ImageRepository imageRepository, RoleRepository roleRepository) {
     this.userRepository = userRepository;
     this.productRepository = productRepository;
+    this.imageRepository = imageRepository;
+    this.roleRepository = roleRepository;
   }
 
   @Override
@@ -42,13 +55,17 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
     logger.info("Importing test data...");
 
+
+
     if (userRepository.count() == 0 && productRepository.count() == 0) {
+
       User jon = new User(
               "Jons@ntnu.no",
               "Jon",
               "Smith",
-              "IDATA2024isbased");
-
+              "IDATA2024isbased"
+      );
+      jon.setRoles(new HashSet<Role>());
       userRepository.save(jon);
 
       User jenny = new User(
@@ -62,25 +79,36 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
       Product consultation = new Product(
               "Consultation",
               100000,
-              "Consultation services",
-              "Consultants.jpeg"
+              "Consultation services"
       );
 
       productRepository.save(consultation);
+      Image image1 = new Image("ItThings.jpeg", "Image of our some fancy IT things "
+              + "(it has nothing to do with our product).");
+
+      imageRepository.save(image1);
 
       Product itSolution = new Product(
               "IT solution",
               150000,
-              "It solution",
-              "ItThings.jpeg"
+              "It solution"
       );
 
+      itSolution.setImage(image1);
       productRepository.save(itSolution);
 
 
       logger.info("DONE importing test data");
     } else {
       logger.info("Database already populated.");
+    }
+
+    if (roleRepository.count() == 0) {
+      Role user = new Role("user");
+      Role admin = new Role("admin");
+
+      roleRepository.save(user);
+      roleRepository.save(admin);
     }
   }
 }
