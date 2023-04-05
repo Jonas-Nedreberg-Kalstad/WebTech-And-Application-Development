@@ -32,25 +32,21 @@ public class UserController {
     this.userService = userService;
   }
 
-  /**
-   * Lets user create a profile.
-   *
-   * @param userInfo information provided by SignUpDto instance
-   * @return ResponseEntity with a message and an HttpStatus reflecting result of sign up attempt
-   */
-  @PostMapping("/api/signup")
-  public ResponseEntity<?> signUp(SignUpDto userInfo) {
-    ResponseEntity<?> response;
-    try {
-      boolean userCreated = userService.createUser(userInfo);
-      if (userCreated) {
-        response = new ResponseEntity<>("User successfully created.", HttpStatus.OK);
-      } else {
-        response = new ResponseEntity<>("Email already registered.", HttpStatus.BAD_REQUEST);
-      }
-    } catch (IllegalArgumentException e) {
-      response = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-    return response;
-  }
+//  /**
+//   * Lets user create a profile.
+//   *
+//   * @param userInfo information provided by SignUpDto instance
+//   * @return ResponseEntity with a message and an HttpStatus reflecting result of sign up attempt
+//   */
+//  @PostMapping("/api/signup")
+//  public ResponseEntity<?> signUp(SignUpDto userInfo) {
+//    ResponseEntity<?> response;
+//    try {
+//      userService.createUser(userInfo);
+//      response = new ResponseEntity<>("User successfully created.", HttpStatus.OK);
+//    } catch (IllegalArgumentException e) {
+//      response = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//    }
+//    return response;
+//  }
 }

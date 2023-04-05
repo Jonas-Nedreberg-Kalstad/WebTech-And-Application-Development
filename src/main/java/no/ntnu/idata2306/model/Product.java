@@ -99,6 +99,11 @@ public class Product {
     return image;
   }
 
+  /** returns order */
+  public Set<Orders> getOrders() {
+    return orders;
+  }
+
   /**
    * sets the value of id field to given value.
    *
@@ -142,5 +147,14 @@ public class Product {
    */
   public void setImage(Image image) {
     this.image = image;
+  }
+
+  /**
+   * sets the value of the image orders to given value.
+   *
+   * @param orders orders
+   */
+  public void setOrders(Set<Orders> orders) {
+    this.orders = orders;
   }
 }

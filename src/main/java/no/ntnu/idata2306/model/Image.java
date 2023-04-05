@@ -11,7 +11,6 @@ import jakarta.persistence.*;
 @Embeddable
 public class Image {
   private String imageLink;
-
   private String imageDescription;
 
   /** Empty constructor. */

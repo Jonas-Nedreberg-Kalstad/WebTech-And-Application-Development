@@ -35,7 +35,7 @@ public class User {
   @Column(name = "salt", nullable = false, unique = false, updatable = false)
   private String salt;
   @Column(name = "active", nullable = false, unique = false, updatable = true)
-  private Boolean active;
+  private boolean active;
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "user_role",
           joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
