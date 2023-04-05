@@ -1,6 +1,5 @@
 package no.ntnu.idata2306.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,9 +16,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfiguration {
 
-  private UserDetailsService userDetailsService;
-  private JwtRequestFilter jwtRequestFilter;
+  private final UserDetailsService userDetailsService;
+  private final JwtRequestFilter jwtRequestFilter;
 
+  /**
+   * Creates a new instance of SecurityConfiguration.
+   *
+   * @param userDetailsService userDetailsService
+   * @param jwtRequestFilter jwtRequestFilter
+   */
   public SecurityConfiguration(UserDetailsService userDetailsService, JwtRequestFilter jwtRequestFilter) {
     this.userDetailsService = userDetailsService;
     this.jwtRequestFilter = jwtRequestFilter;
@@ -30,7 +35,7 @@ public class SecurityConfiguration {
    * Here we tell that we want to load users from a database
    *
    * @param auth Authentication builder
-   * @throws Exception
+   * @throws Exception e
    */
 
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -38,11 +43,10 @@ public class SecurityConfiguration {
   }
 
   /**
-   * This is needed since Spring Boot 2.0, see
-   * https://stackoverflow.com/questions/52243774/consider-defining-a-bean-of-type-org-springframework-security-authentication-au
+   * Returns AuthenticationConfiguration.
    *
-   * @return
-   * @throws Exception
+   * @return AuthenticationConfiguration
+   * @throws Exception e
    */
   @Bean
   public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
@@ -51,7 +55,7 @@ public class SecurityConfiguration {
 
 
   /**
-   * This method is called to decide what encryption to use for password checking
+   * This method is called to decide what encryption to use for password checking.
    *
    * @return The password encryptor
    */
@@ -64,7 +68,7 @@ public class SecurityConfiguration {
    * This method will be called automatically by the framework to find out what authentication to use.
    *
    * @param http HttpSecurity setting builder
-   * @throws Exception
+   * @throws Exception e
    */
   @Bean
   public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
@@ -74,6 +78,7 @@ public class SecurityConfiguration {
             .requestMatchers("/api/login").permitAll()
             .requestMatchers("/api/signup").permitAll()
             .requestMatchers("/api/products").permitAll()
+            .requestMatchers("/api/products/{id}").permitAll()
             .anyRequest().authenticated()
             .and().sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -82,20 +87,14 @@ public class SecurityConfiguration {
     return http.build();
   }
 
+  /** Returns userDetailsService. */
   public UserDetailsService getUserDetailsService() {
     return userDetailsService;
   }
 
+  /** returns jwtRequestFilter */
   public JwtRequestFilter getJwtRequestFilter() {
     return jwtRequestFilter;
-  }
-
-  public void setUserDetailsService(UserDetailsService userDetailsService) {
-    this.userDetailsService = userDetailsService;
-  }
-
-  public void setJwtRequestFilter(JwtRequestFilter jwtRequestFilter) {
-    this.jwtRequestFilter = jwtRequestFilter;
   }
 }
 

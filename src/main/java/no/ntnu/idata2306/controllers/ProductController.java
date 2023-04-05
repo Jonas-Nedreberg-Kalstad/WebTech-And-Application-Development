@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.services.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
