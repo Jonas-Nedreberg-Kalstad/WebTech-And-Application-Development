@@ -5,9 +5,12 @@ import java.util.Optional;
 import no.ntnu.idata2306.dto.SignUpDto;
 import no.ntnu.idata2306.model.User;
 import no.ntnu.idata2306.repositories.UserRepository;
+import no.ntnu.idata2306.security.AccessUserDetails;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,7 +20,7 @@ import org.springframework.stereotype.Service;
  * @version 22.03.2023
  */
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
   private static final int MIN_PASSWORD_LENGTH = 8;
   private final UserRepository userRepository;
@@ -37,7 +40,7 @@ public class UserService {
    * @param userInfo information provided by SignUpDto instance
    * @return true if user is created, false otherwise.
    */
-  public boolean createUser(SignUpDto userInfo) {
+  public void createUser(SignUpDto userInfo) {
     if (!validEmail(userInfo.email())) {
       throw new IllegalArgumentException("Invalid email format.");
     }
@@ -50,15 +53,12 @@ public class UserService {
       throw new IllegalArgumentException("Name fields must be filled out.");
     }
 
-    boolean userCreated = false;
     try {
-      findUserByEmail(userInfo.email());
+      loadUserByUsername(userInfo.email());
+      throw new IllegalArgumentException("Email already registered.");
     } catch (NullPointerException e) {
       userRepository.save(new User(userInfo));
-      userCreated = true;
     }
-
-    return userCreated;
   }
 
   /**
@@ -68,12 +68,13 @@ public class UserService {
    * @return user with given email
    * @throws NullPointerException if there is no user registered with given email
    */
-  private User findUserByEmail(String email) throws NullPointerException {
+  @Override
+  public UserDetails loadUserByUsername(String email) throws NullPointerException {
     Optional<User> user = userRepository.findByEmail(email);
     if (user.isPresent()) {
-      return user.get();
+      return new AccessUserDetails(user.get());
     } else {
-      throw new NullPointerException("User with email: " + email + " not registered.");
+      throw new NullPointerException("User with email: " + email + " not found.");
     }
   }
 

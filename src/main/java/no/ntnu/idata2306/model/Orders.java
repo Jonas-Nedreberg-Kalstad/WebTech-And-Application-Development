@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 /**
  * Represents an order for a product.
  *
- * @author Edvin Astad
+ * @author Edvin Astad, Jonas N.Kalstad
  * @version 04.04.2023
  */
 @Entity

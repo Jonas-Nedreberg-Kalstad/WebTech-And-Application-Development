@@ -16,6 +16,7 @@ public class AccessUserDetails implements UserDetails {
   private final String firstName;
   private final String lastName;
   private final String password;
+  private final String salt;
   private final boolean active;
   private final Set<GrantedAuthority> authorities = new HashSet<>();
 
@@ -24,6 +25,7 @@ public class AccessUserDetails implements UserDetails {
     this.firstName = user.getFirstName();
     this.lastName = user.getLastName();
     this.password = user.getPassword();
+    this.salt = user.getSalt();
     this.active = user.getActive();
     this.convertRoles(user.getRoles());
   }
@@ -50,6 +52,11 @@ public class AccessUserDetails implements UserDetails {
   @Override
   public String getPassword() {
     return password;
+  }
+
+  /** Returns salt. */
+  public String getSalt() {
+    return salt;
   }
 
   /**

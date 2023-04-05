@@ -100,7 +100,7 @@ public class Product {
   }
 
   /** returns order */
-  public Set<Order> getOrders() {
+  public Set<Orders> getOrders() {
     return orders;
   }
 
@@ -154,7 +154,7 @@ public class Product {
    *
    * @param orders orders
    */
-  public void setOrders(Set<Order> orders) {
+  public void setOrders(Set<Orders> orders) {
     this.orders = orders;
   }
 }
