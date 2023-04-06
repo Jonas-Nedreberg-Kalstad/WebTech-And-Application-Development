@@ -58,8 +58,7 @@ public class User {
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.salt = gensalt();
-    this.password = hashpw(password, salt);
+    this.password = password;
     this.active = true;
   }
 
@@ -72,8 +71,7 @@ public class User {
     this.email = userInfo.email();
     this.firstName = userInfo.firstName();
     this.lastName = userInfo.firstName();
-    this.salt = gensalt();
-    this.password = hashpw(password, salt);
+    this.password = userInfo.password();
     this.active = true;
   }
 

@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,7 +23,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements UserDetailsService {
 
-  private static final int MIN_PASSWORD_LENGTH = 8;
+  private static final int MIN_PASSWORD_LENGTH = 4;
   private final UserRepository userRepository;
 
   /**
@@ -38,7 +39,6 @@ public class UserService implements UserDetailsService {
    * Creates a new user if params are valid and email is not yet registered.
    *
    * @param userInfo information provided by SignUpDto instance
-   * @return true if user is created, false otherwise.
    */
   public void createUser(SignUpDto userInfo) {
     if (!validEmail(userInfo.email())) {
@@ -48,6 +48,8 @@ public class UserService implements UserDetailsService {
     if (!validPassword(userInfo.password())) {
       throw new IllegalArgumentException("Invalid password.");
     }
+
+    createHash(userInfo.password());
 
     if (userInfo.firstName().trim().equals("") || userInfo.lastName().trim().equals("")) {
       throw new IllegalArgumentException("Name fields must be filled out.");
@@ -76,6 +78,16 @@ public class UserService implements UserDetailsService {
     } else {
       throw new NullPointerException("User with email: " + email + " not found.");
     }
+  }
+
+  /**
+   * Create a secure hash of a password
+   *
+   * @param password Plaintext password
+   * @return BCrypt hash, with random salt
+   */
+  private String createHash(String password) {
+    return BCrypt.hashpw(password, BCrypt.gensalt());
   }
 
   /**

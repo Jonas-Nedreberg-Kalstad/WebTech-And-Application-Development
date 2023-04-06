@@ -32,7 +32,7 @@ public class SecurityConfiguration {
    * @param auth Authentication builder
    * @throws Exception
    */
-
+  @Autowired
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(userDetailsService);
   }
@@ -74,6 +74,9 @@ public class SecurityConfiguration {
             .requestMatchers("/api/login").permitAll()
             .requestMatchers("/api/signup").permitAll()
             .requestMatchers("/api/products").permitAll()
+            .requestMatchers("/").permitAll()
+            .requestMatchers("/images/**").permitAll()
+            .requestMatchers("/style.css").permitAll()
             .anyRequest().authenticated()
             .and().sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

@@ -11,10 +11,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Controller for authentication requests.
@@ -63,11 +61,12 @@ public class AuthenticationController {
    * @return Name of the template for the result page
    */
   @PostMapping("/api/signup")
-  public ResponseEntity<String> signupProcess(@RequestBody SignUpDto signupData) {
+  public ResponseEntity<String> signupProcess(@ModelAttribute SignUpDto signupData, Model model) {
+    model.addAttribute("signupData", signupData);
     ResponseEntity<String> response;
     try {
       userService.createUser(signupData);
-      response = new ResponseEntity<>(HttpStatus.OK);
+      response = new ResponseEntity<>("login", HttpStatus.OK);
     } catch (IllegalArgumentException e) {
       response = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }

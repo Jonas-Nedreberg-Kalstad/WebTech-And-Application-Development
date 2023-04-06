@@ -10,7 +10,7 @@ package no.ntnu.idata2306.dto;
  * @author Edvin Astad
  * @version 04.04.2023
  */
-public record SignUpDto(String email, String firstName, String lastName, String password) {
+public record SignUpDto(String firstName, String lastName, String email, String password) {
   /**
    * Creates a new instance of SignUpDto.
    */
