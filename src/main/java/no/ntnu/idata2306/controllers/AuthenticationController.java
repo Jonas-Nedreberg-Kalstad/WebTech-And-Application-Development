@@ -25,9 +25,9 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
 
 
-  private AuthenticationManager authenticationManager;
-  private UserService userService;
-  private JwtUtil jwtUtil;
+  private final AuthenticationManager authenticationManager;
+  private final UserService userService;
+  private final JwtUtil jwtUtil;
 
   public AuthenticationController(AuthenticationManager authenticationManager, UserService userService, JwtUtil jwtUtil) {
     this.authenticationManager = authenticationManager;

@@ -31,22 +31,4 @@ public class UserController {
   public UserController(UserService userService) {
     this.userService = userService;
   }
-
-//  /**
-//   * Lets user create a profile.
-//   *
-//   * @param userInfo information provided by SignUpDto instance
-//   * @return ResponseEntity with a message and an HttpStatus reflecting result of sign up attempt
-//   */
-//  @PostMapping("/api/signup")
-//  public ResponseEntity<?> signUp(SignUpDto userInfo) {
-//    ResponseEntity<?> response;
-//    try {
-//      userService.createUser(userInfo);
-//      response = new ResponseEntity<>("User successfully created.", HttpStatus.OK);
-//    } catch (IllegalArgumentException e) {
-//      response = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//    }
-//    return response;
-//  }
 }
