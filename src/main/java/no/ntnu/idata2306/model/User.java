@@ -68,10 +68,10 @@ public class User {
    * @param userInfo information provided by SignUpDto instance
    */
   public User(SignUpDto userInfo) {
-    this.email = userInfo.email();
-    this.firstName = userInfo.firstName();
-    this.lastName = userInfo.firstName();
-    this.password = userInfo.password();
+    this.email = userInfo.getEmail();
+    this.firstName = userInfo.getFirstName();
+    this.lastName = userInfo.getLastName();
+    this.password = userInfo.getPassword();
     this.active = true;
   }
 

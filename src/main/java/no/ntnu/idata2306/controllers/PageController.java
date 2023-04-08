@@ -1,8 +1,10 @@
 package no.ntnu.idata2306.controllers;
 
+import no.ntnu.idata2306.dto.SignUpDto;
 import no.ntnu.idata2306.services.ProductService;
 import no.ntnu.idata2306.services.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -27,7 +29,8 @@ public class PageController {
   }
 
   @GetMapping("/api/signup")
-  public String getSignUp(){
+  public String getSignUp(Model model){
+    model.addAttribute("signupData", new SignUpDto());
     return "signup";
   }
 
