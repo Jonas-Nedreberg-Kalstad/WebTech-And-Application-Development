@@ -9,6 +9,8 @@ public class SignUpDto {
   String email;
   String password;
 
+  String repeatedPassword;
+
   public String getFirstName() {
     return firstName;
   }
@@ -39,5 +41,13 @@ public class SignUpDto {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getRepeatedPassword() {
+    return repeatedPassword;
+  }
+
+  public void setRepeatedPassword(String repeatedPassword) {
+    this.repeatedPassword = repeatedPassword;
   }
 }

@@ -25,24 +25,24 @@
           <main>
           <form method="post" th:action="@{/api/signup}" th:object="${signupData}">
           <div class="input-field">
-            <input type="text" class="input" id="First Name" required autocomplete="off" th:field="*{firstName}">
-            <label for="First Name">First Name</label>
+            <input type="text" class="input" id="first-name" required autocomplete="off" name="firstName">
+            <label for="first-name">First Name</label>
           </div>
           <div class="input-field">
-            <input type="text" class="input" id="Last Name" required autocomplete="off" th:field="*{lastName}">
-            <label for="Last Name">Last Name</label>
+            <input type="text" class="input" id="last-name" required autocomplete="off" name="lastName">
+            <label for="last-name">Last Name</label>
           </div>
           <div class="input-field">
-            <input type="text" class="input" id="email" required autocomplete="off" th:field="*{email}">
+            <input type="text" class="input" id="email" required autocomplete="off" name="email">
             <label for="email">Email</label>
           </div>
           <div class="input-field">
-            <input type="password" class="input" id="password" required th:field="*{password}">
+            <input type="password" class="input" id="password" required name="password">
             <label for="password">Password</label>
           </div>
           <div class="input-field">
-            <input type="password" class="input" id="confirm_password">
-            <label for="confirm_password">Confirm password</label>
+            <input type="password" class="input" id="confirm-password" name="repeatedPassword">
+            <label for="confirm-password">Confirm password</label>
           </div>
           <div class="input-field">
             <input type="submit" class="submit" value="Sign Up">
@@ -59,7 +59,7 @@
 </div>
 <script>
   const password = document.getElementById('password');
-  const confirm_password = document.getElementById('confirm_password');
+  const confirm_password = document.getElementById('confirm-password');
 
   function validatePassword() {
     if (password.value !== confirm_password.value) {
