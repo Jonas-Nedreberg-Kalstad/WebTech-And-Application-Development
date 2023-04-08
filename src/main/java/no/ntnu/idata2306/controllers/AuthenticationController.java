@@ -55,22 +55,5 @@ public class AuthenticationController {
     return ResponseEntity.ok(new AuthenticationResponse(jwt));
   }
 
-  /**
-   * This method processes data received from the sign-up form (HTTP POST)
-   *
-   * @return Name of the template for the result page
-   */
-  @PostMapping("/api/signup")
-  public ResponseEntity<String> signupProcess(@ModelAttribute SignUpDto signupData, Model model) {
-    model.addAttribute("signupData", signupData);
-    ResponseEntity<String> response;
-    try {
-      userService.createUser(signupData);
-      response = new ResponseEntity<>("login", HttpStatus.OK);
-    } catch (IllegalArgumentException e) {
-      response = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-    return response;
-  }
 
 }

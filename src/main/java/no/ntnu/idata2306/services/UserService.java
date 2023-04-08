@@ -41,22 +41,23 @@ public class UserService implements UserDetailsService {
    * @param userInfo information provided by SignUpDto instance
    */
   public void createUser(SignUpDto userInfo) {
-    if (!validEmail(userInfo.email())) {
+    if (!validEmail(userInfo.getEmail())) {
       throw new IllegalArgumentException("Invalid email format.");
     }
 
-    if (!validPassword(userInfo.password())) {
+    if (!validPassword(userInfo.getPassword())) {
       throw new IllegalArgumentException("Invalid password.");
     }
 
-    createHash(userInfo.password());
+    userInfo.setPassword(createHash(userInfo.getPassword()));
 
-    if (userInfo.firstName().trim().equals("") || userInfo.lastName().trim().equals("")) {
+
+    if (userInfo.getFirstName().trim().equals("") || userInfo.getLastName().trim().equals("")) {
       throw new IllegalArgumentException("Name fields must be filled out.");
     }
 
     try {
-      loadUserByUsername(userInfo.email());
+      loadUserByUsername(userInfo.getEmail());
       throw new IllegalArgumentException("Email already registered.");
     } catch (NullPointerException e) {
       userRepository.save(new User(userInfo));

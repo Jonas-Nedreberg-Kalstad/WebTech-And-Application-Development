@@ -32,8 +32,6 @@ public class User {
   private String lastName;
   @Column(name = "password", nullable = false, unique = false)
   private String password;
-  @Column(name = "salt", nullable = false, unique = false, updatable = false)
-  private String salt;
   @Column(name = "active", nullable = false, unique = false, updatable = true)
   private boolean active;
   @ManyToMany(fetch = FetchType.EAGER)
@@ -68,10 +66,10 @@ public class User {
    * @param userInfo information provided by SignUpDto instance
    */
   public User(SignUpDto userInfo) {
-    this.email = userInfo.email();
-    this.firstName = userInfo.firstName();
-    this.lastName = userInfo.firstName();
-    this.password = userInfo.password();
+    this.email = userInfo.getEmail();
+    this.firstName = userInfo.getFirstName();
+    this.lastName = userInfo.getFirstName();
+    this.password = userInfo.getPassword();
     this.active = true;
   }
 
@@ -114,13 +112,6 @@ public class User {
    */
   public String getPassword() {
     return this.password;
-  }
-
-  /**
-   * returns salt.
-   */
-  public String getSalt() {
-    return this.salt;
   }
 
   /** returns active */
@@ -199,16 +190,6 @@ public class User {
    */
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  /**
-   * sets the value of the salt field to given value.
-   * <b>Should never be used as salt should be final, but is required by spring</b>
-   *
-   * @param salt salt
-   */
-  public void setSalt(String salt) {
-    this.salt = salt;
   }
 
   /**
