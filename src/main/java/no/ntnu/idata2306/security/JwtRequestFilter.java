@@ -20,9 +20,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
   private UserDetailsService userDetailsService;
   private JwtUtil jwtUtil;
-  public JwtRequestFilter() {
-  }
-
 
   public JwtRequestFilter(UserDetailsService userDetailsService, JwtUtil jwtUtil) {
     this.userDetailsService = userDetailsService;
@@ -54,22 +51,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
       logger.info("Error while parsing JWT token: " + ex.getMessage());
     }
     filterChain.doFilter(request, response);
-  }
-
-  public UserDetailsService getUserDetailsService() {
-    return userDetailsService;
-  }
-
-  public JwtUtil getJwtUtil() {
-    return jwtUtil;
-  }
-
-  public void setUserDetailsService(UserDetailsService userDetailsService) {
-    this.userDetailsService = userDetailsService;
-  }
-
-  public void setJwtUtil(JwtUtil jwtUtil) {
-    this.jwtUtil = jwtUtil;
   }
 }
 
