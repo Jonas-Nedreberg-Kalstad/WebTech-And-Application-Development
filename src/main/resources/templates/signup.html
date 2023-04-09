@@ -22,33 +22,31 @@
       <div class="col-md-6 right">
         <div class="input-box">
           <header>Create account</header>
-          <main>
           <form method="post" th:action="@{/api/signup}" th:object="${signupData}">
-          <div class="input-field">
+            <div class="input-field">
             <input type="text" class="input" id="firstName" required autocomplete="off" name="firstName">
             <label for="firstName">First Name</label>
-          </div>
-          <div class="input-field">
-            <input type="text" class="input" id="lastName" required autocomplete="off" name="lastName">
-            <label for="lastName">Last Name</label>
-          </div>
-          <div class="input-field">
-            <input type="text" class="input" id="email" required autocomplete="off" name="email">
-            <label for="email">Email</label>
-          </div>
-          <div class="input-field">
-            <input type="password" class="input" id="password" required name="password">
-            <label for="password">Password</label>
-          </div>
-          <div class="input-field">
-            <input type="password" class="input" id="confirmPassword">
-            <label for="confirmPassword">Confirm password</label>
-          </div>
-          <div class="input-field">
-            <input type="submit" class="submit" value="Sign Up">
-          </div>
+            </div>
+            <div class="input-field">
+              <input type="text" class="input" id="lastName" required autocomplete="off" name="lastName">
+              <label for="lastName">Last Name</label>
+            </div>
+            <div class="input-field">
+              <input type="text" class="input" id="email" required autocomplete="off" name="email">
+              <label for="email">Email</label>
+            </div>
+            <div class="input-field">
+              <input type="password" class="input" id="password" required name="password">
+              <label for="password">Password</label>
+            </div>
+            <div class="input-field">
+              <input type="password" class="input" id="confirmPassword">
+              <label for="confirmPassword">Confirm password</label>
+            </div>
+            <div class="input-field">
+              <input type="submit" class="submit" value="Sign Up">
+            </div>
           </form>
-          </main>
           <div class="signin">
             <span>Already have an account? <a href="api/signup">Log in here</a></span>
           </div>

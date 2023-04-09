@@ -24,17 +24,17 @@
         <div class="input-box">
           <header>Logg in</header>
           <form method="post" th:action="@{/api/login}">
-          <div class="input-field">
-            <input type="text" class="input" id="email" required autocomplete="off" name="email">
-            <label for="email">Email</label>
-          </div>
-          <div class="input-field">
-            <input type="password" class="input" id="password" required name="password">
-            <label for="password">Password</label>
-          </div>
-          <div class="input-field">
-            <input type="submit" class="submit" value="Login">
-          </div>
+            <div class="input-field">
+              <input type="text" class="input" id="email" required autocomplete="off" name="email">
+              <label for="email">Email</label>
+            </div>
+            <div class="input-field">
+              <input type="password" class="input" id="password" required name="password">
+              <label for="password">Password</label>
+            </div>
+            <div class="input-field">
+              <input type="submit" class="submit" value="Login">
+            </div>
           </form>
           <div class="signin">
             <span>Don't have an account? <a href="signup">Sign up here</a></span>
