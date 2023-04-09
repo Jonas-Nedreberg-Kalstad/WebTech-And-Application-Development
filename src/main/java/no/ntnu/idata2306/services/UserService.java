@@ -49,9 +49,6 @@ public class UserService implements UserDetailsService {
       throw new IllegalArgumentException("Invalid password.");
     }
 
-    userInfo.setPassword(createHash(userInfo.getPassword()));
-
-
     if (userInfo.getFirstName().trim().equals("") || userInfo.getLastName().trim().equals("")) {
       throw new IllegalArgumentException("Name fields must be filled out.");
     }
@@ -60,7 +57,7 @@ public class UserService implements UserDetailsService {
       loadUserByUsername(userInfo.getEmail());
       throw new IllegalArgumentException("Email already registered.");
     } catch (NullPointerException e) {
-      userRepository.save(new User(userInfo));
+      userRepository.save(new User(userInfo.getFirstName(), userInfo.getLastName(), userInfo.getEmail(), createHash(userInfo.getPassword())));
     }
   }
 
