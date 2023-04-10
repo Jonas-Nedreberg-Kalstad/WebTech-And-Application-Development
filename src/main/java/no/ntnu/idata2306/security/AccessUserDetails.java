@@ -103,23 +103,4 @@ public class AccessUserDetails implements UserDetails {
     return true;
   }
 
-  /** Returns email. */
-  public String getEmail() {
-    return email;
-  }
-
-  /** Returns first name */
-  public String getFirstName() {
-    return firstName;
-  }
-
-  /** Returns last name. */
-  public String getLastName() {
-    return lastName;
-  }
-
-  /** Returns active. */
-  public boolean getActive() {
-    return active;
-  }
 }

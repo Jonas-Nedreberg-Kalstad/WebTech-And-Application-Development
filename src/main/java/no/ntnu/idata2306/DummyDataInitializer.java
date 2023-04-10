@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -73,21 +74,20 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
       roleRepository.save(admin);
 
       User jon = new User(
-              "Jons@ntnu.no",
               "Jon",
               "Smith",
-              "IDATA2024isbased"
-      );
+              "Jons@ntnu.no",
+              BCrypt.hashpw("IDATA2024isbased", BCrypt.gensalt()));
 
       jon.addRole(admin);
       jon.addRole(user);
       userRepository.save(jon);
 
       User jenny = new User(
-              "Jend@ntnu.no",
               "Jenny",
               "Dow",
-              "FuckIDATA2024");
+              "Jend@ntnu.no",
+              BCrypt.hashpw("FuckIDATA2024", BCrypt.gensalt()));
 
       userRepository.save(jenny);
 
