@@ -76,8 +76,8 @@ public class SecurityConfiguration {
     // Allow JWT authentication
     http.cors().and().csrf().disable()
             .authorizeHttpRequests()
-            .requestMatchers("/api/login").permitAll()
-            .requestMatchers("/api/signup").permitAll()
+            .requestMatchers("/login").permitAll()
+            .requestMatchers("/signup").permitAll()
             .requestMatchers("/api/products").permitAll()
             .requestMatchers("/").permitAll()
             .requestMatchers("/images/**").permitAll()

@@ -22,7 +22,7 @@
       <div class="col-md-6 right">
         <div class="input-box">
           <header>Create account</header>
-          <form method="post" th:action="@{/api/signup}" th:object="${signupData}">
+          <form method="post" th:action="@{/signup}" th:object="${signupData}">
             <div class="input-field">
             <input type="text" class="input" id="firstName" required autocomplete="off" name="firstName">
             <label for="firstName">First Name</label>
@@ -48,7 +48,7 @@
             </div>
           </form>
           <div class="signin">
-            <span>Already have an account? <a href="api/signup">Log in here</a></span>
+            <span>Already have an account? <a href="signup">Log in here</a></span>
           </div>
         </div>
       </div>
