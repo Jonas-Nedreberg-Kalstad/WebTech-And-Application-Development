@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,7 +23,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements UserDetailsService {
 
-  private static final int MIN_PASSWORD_LENGTH = 8;
+  private static final int MIN_PASSWORD_LENGTH = 4;
   private final UserRepository userRepository;
 
   /**
@@ -40,23 +41,23 @@ public class UserService implements UserDetailsService {
    * @param userInfo information provided by SignUpDto instance
    */
   public void createUser(SignUpDto userInfo) {
-    if (!validEmail(userInfo.email())) {
+    if (!validEmail(userInfo.getEmail())) {
       throw new IllegalArgumentException("Invalid email format.");
     }
 
-    if (!validPassword(userInfo.password())) {
+    if (!validPassword(userInfo.getPassword())) {
       throw new IllegalArgumentException("Invalid password.");
     }
 
-    if (userInfo.firstName().trim().equals("") || userInfo.lastName().trim().equals("")) {
+    if (userInfo.getFirstName().trim().equals("") || userInfo.getLastName().trim().equals("")) {
       throw new IllegalArgumentException("Name fields must be filled out.");
     }
 
     try {
-      loadUserByUsername(userInfo.email());
+      loadUserByUsername(userInfo.getEmail());
       throw new IllegalArgumentException("Email already registered.");
     } catch (NullPointerException e) {
-      userRepository.save(new User(userInfo));
+      userRepository.save(new User(userInfo.getFirstName(), userInfo.getLastName(), userInfo.getEmail(), createHash(userInfo.getPassword())));
     }
   }
 
@@ -75,6 +76,16 @@ public class UserService implements UserDetailsService {
     } else {
       throw new NullPointerException("User with email: " + email + " not found.");
     }
+  }
+
+  /**
+   * Create a secure hash of a password
+   *
+   * @param password Plaintext password
+   * @return BCrypt hash, with random salt
+   */
+  private String createHash(String password) {
+    return BCrypt.hashpw(password, BCrypt.gensalt());
   }
 
   /**

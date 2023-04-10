@@ -11,10 +11,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Controller for authentication requests.
@@ -43,7 +41,7 @@ public class AuthenticationController {
    * @param authenticationRequest The request JSON object containing username and password
    * @return OK + JWT token; Or UNAUTHORIZED
    */
-  @PostMapping("/api/authenticate")
+  @PostMapping("/api/login")
   public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
     try {
       authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -57,21 +55,5 @@ public class AuthenticationController {
     return ResponseEntity.ok(new AuthenticationResponse(jwt));
   }
 
-  /**
-   * This method processes data received from the sign-up form (HTTP POST)
-   *
-   * @return Name of the template for the result page
-   */
-  @PostMapping("/api/signup")
-  public ResponseEntity<String> signupProcess(@RequestBody SignUpDto signupData) {
-    ResponseEntity<String> response;
-    try {
-      userService.createUser(signupData);
-      response = new ResponseEntity<>(HttpStatus.OK);
-    } catch (IllegalArgumentException e) {
-      response = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-    return response;
-  }
 
 }
