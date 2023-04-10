@@ -54,8 +54,7 @@ public class User {
    */
   public User(String email, String firstName, String lastName, String password) {
     this.email = email;
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.firstName = firstName;    this.lastName = lastName;
     this.password = password;
     this.active = true;
   }
@@ -213,7 +212,7 @@ public class User {
   /**
    * Sets the value of the orders filed to given value.
    *
-   * @param orders
+   * @param orders orders
    */
   public void setOrders(Set<Orders> orders) {
     this.orders = orders;

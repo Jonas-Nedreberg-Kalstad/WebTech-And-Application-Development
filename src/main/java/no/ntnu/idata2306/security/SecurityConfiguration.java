@@ -38,6 +38,7 @@ public class SecurityConfiguration {
    * @param auth Authentication builder
    * @throws Exception e
    */
+  @Autowired
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(userDetailsService);
   }
