@@ -124,23 +124,6 @@ public class User {
     return roles;
   }
 
-  /**
-   * Check if the user has a specified role
-   * @param roleName Name of the role
-   * @return True if hte user has the role, false otherwise.
-   */
-  public boolean hasRole(String roleName) {
-    boolean found = false;
-    Iterator<Role> it = roles.iterator();
-    while (!found && it.hasNext()) {
-      Role role = it.next();
-      if (role.getName().equals(roleName)) {
-        found = true;
-      }
-    }
-    return found;
-  }
-
   /** Returns orders */
   public Set<Orders> getOrders() {
     return orders;
