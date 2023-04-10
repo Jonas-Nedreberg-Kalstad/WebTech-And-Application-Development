@@ -32,7 +32,7 @@ public class PageController {
 
   }
 
-  @GetMapping("/api/signup")
+  @GetMapping("/signup")
   public String getSignUp(Model model){
     model.addAttribute("signupData", new SignUpDto());
     return "signup";
@@ -43,7 +43,7 @@ public class PageController {
    *
    * @return Name of the template for the result page
    */
-  @PostMapping("/api/signup")
+  @PostMapping("/signup")
   public ResponseEntity<String> signupProcess(@ModelAttribute SignUpDto signupData, Model model) {
     model.addAttribute("signupData", signupData);
     ResponseEntity<String> response;
@@ -56,7 +56,7 @@ public class PageController {
     return response;
   }
 
-  @GetMapping("/api/login")
+  @GetMapping("/login")
   public String getLogin(){
     return "login";
   }
