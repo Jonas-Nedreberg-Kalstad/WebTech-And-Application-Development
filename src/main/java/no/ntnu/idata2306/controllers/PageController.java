@@ -1,19 +1,15 @@
 package no.ntnu.idata2306.controllers;
 
-import jakarta.servlet.http.HttpSession;
 import no.ntnu.idata2306.dto.SignUpDto;
-import no.ntnu.idata2306.model.User;
 import no.ntnu.idata2306.services.ProductService;
 import no.ntnu.idata2306.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -61,8 +57,7 @@ public class PageController {
   }
 
   @GetMapping("/login")
-  public String formLogin(Model model){
-    model.addAttribute("user", new User());
+  public String getLogin(){
     return "login";
   }
 
