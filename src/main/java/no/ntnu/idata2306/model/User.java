@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import no.ntnu.idata2306.dto.SignUpDto;
 
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -24,12 +25,12 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false, unique = true)
   private int id;
-  @Column(name = "email", nullable = false, unique = true, updatable = false)
-  private String email;
   @Column(name = "first_name", nullable = false, unique = false)
   private String firstName;
   @Column(name = "last_name", nullable = false, unique = false)
   private String lastName;
+  @Column(name = "email", nullable = false, unique = true, updatable = false)
+  private String email;
   @Column(name = "password", nullable = false, unique = false)
   private String password;
   @Column(name = "active", nullable = false, unique = false, updatable = true)
@@ -52,7 +53,7 @@ public class User {
    * @param lastName  surname of user.
    * @param password  users password.
    */
-  public User(String email, String firstName, String lastName, String password) {
+  public User(String firstName, String lastName, String email, String password) {
     this.email = email;
     this.firstName = firstName;    this.lastName = lastName;
     this.password = password;
@@ -121,6 +122,23 @@ public class User {
   /** returns roles */
   public Set<Role> getRoles() {
     return roles;
+  }
+
+  /**
+   * Check if the user has a specified role
+   * @param roleName Name of the role
+   * @return True if hte user has the role, false otherwise.
+   */
+  public boolean hasRole(String roleName) {
+    boolean found = false;
+    Iterator<Role> it = roles.iterator();
+    while (!found && it.hasNext()) {
+      Role role = it.next();
+      if (role.getName().equals(roleName)) {
+        found = true;
+      }
+    }
+    return found;
   }
 
   /** Returns orders */

@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,7 @@
       <div class="col-md-6 right">
         <div class="input-box">
           <header>Logg in</header>
-          <form method="post" th:action="@{/login}">
+          <form method="post" th:action="@{/login}" th:object="${loginData}">
             <div class="input-field">
               <input type="text" class="input" id="email" required autocomplete="off" name="email">
               <label for="email">Email</label>
@@ -30,7 +30,7 @@
               <label for="password">Password</label>
             </div>
             <div class="input-field">
-              <input type="submit" class="submit" value="Login">
+              <button type="submit" class="submit">Login</button>
             </div>
           </form>
           <div class="signin">
