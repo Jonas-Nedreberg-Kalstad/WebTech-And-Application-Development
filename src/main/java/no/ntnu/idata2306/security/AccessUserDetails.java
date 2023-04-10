@@ -20,6 +20,11 @@ public class AccessUserDetails implements UserDetails {
   private final boolean active;
   private final Set<GrantedAuthority> authorities = new HashSet<>();
 
+  /**
+   * Creates a new instance of AccessUserDetails.
+   *
+   * @param user user
+   */
   public AccessUserDetails(User user) {
     this.email = user.getEmail();
     this.firstName = user.getFirstName();
@@ -29,6 +34,7 @@ public class AccessUserDetails implements UserDetails {
     this.active = user.getActive();
     this.convertRoles(user.getRoles());
   }
+
 
   private void convertRoles(Set<Role> roles) {
     authorities.clear();

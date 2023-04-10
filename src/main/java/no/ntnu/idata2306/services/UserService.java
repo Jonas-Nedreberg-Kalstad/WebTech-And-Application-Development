@@ -38,7 +38,6 @@ public class UserService implements UserDetailsService {
    * Creates a new user if params are valid and email is not yet registered.
    *
    * @param userInfo information provided by SignUpDto instance
-   * @return true if user is created, false otherwise.
    */
   public void createUser(SignUpDto userInfo) {
     if (!validEmail(userInfo.email())) {

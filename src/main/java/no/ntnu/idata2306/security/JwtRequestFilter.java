@@ -18,12 +18,16 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-  private UserDetailsService userDetailsService;
-  private JwtUtil jwtUtil;
-  public JwtRequestFilter() {
-  }
+  private final UserDetailsService userDetailsService;
+  private final JwtUtil jwtUtil;
 
 
+  /**
+   * Creates a new instance of JwtRequestFilter.
+   *
+   * @param userDetailsService userDetailsService
+   * @param jwtUtil jwtUtil
+   */
   public JwtRequestFilter(UserDetailsService userDetailsService, JwtUtil jwtUtil) {
     this.userDetailsService = userDetailsService;
     this.jwtUtil = jwtUtil;
@@ -56,20 +60,16 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     filterChain.doFilter(request, response);
   }
 
+  /** Returns userDetailsService. */
   public UserDetailsService getUserDetailsService() {
     return userDetailsService;
   }
 
+  /** Returns JwtUtil. */
   public JwtUtil getJwtUtil() {
     return jwtUtil;
   }
 
-  public void setUserDetailsService(UserDetailsService userDetailsService) {
-    this.userDetailsService = userDetailsService;
-  }
 
-  public void setJwtUtil(JwtUtil jwtUtil) {
-    this.jwtUtil = jwtUtil;
-  }
 }
 

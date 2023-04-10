@@ -1,5 +1,6 @@
 package no.ntnu.idata2306.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,6 +39,7 @@ public class SecurityConfiguration {
    * @throws Exception e
    */
 
+  @Autowired
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(userDetailsService);
   }
