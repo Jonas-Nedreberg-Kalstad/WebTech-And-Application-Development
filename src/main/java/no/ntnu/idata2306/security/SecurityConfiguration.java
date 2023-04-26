@@ -59,6 +59,8 @@ public class SecurityConfiguration {
             .authorizeHttpRequests()
             .requestMatchers("/login").permitAll()
             .requestMatchers("/signup").permitAll()
+            .requestMatchers("/product").permitAll()
+            .requestMatchers("/shop").permitAll()
             .requestMatchers("/api/products").hasAuthority("user")
             .requestMatchers("/").permitAll()
             .requestMatchers("/images/**").permitAll()

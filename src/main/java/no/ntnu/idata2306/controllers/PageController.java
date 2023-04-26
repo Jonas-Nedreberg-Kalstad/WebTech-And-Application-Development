@@ -61,4 +61,14 @@ public class PageController {
     return "login";
   }
 
+  @GetMapping("/product")
+  public String getProduct(){
+    return "Produkt";
+  }
+
+  @GetMapping("/shop")
+  public String getProductPage(){
+    return "Produktside";
+  }
+
 }
