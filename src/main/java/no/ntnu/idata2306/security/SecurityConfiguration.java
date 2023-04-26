@@ -62,7 +62,7 @@ public class SecurityConfiguration {
             .requestMatchers("/api/products").hasAuthority("user")
             .requestMatchers("/").permitAll()
             .requestMatchers("/images/**").permitAll()
-            .requestMatchers("/style.css").permitAll()
+            .requestMatchers("/css/**").permitAll()
             .requestMatchers("/api/products/{id}").hasAuthority("admin")
             .and().formLogin().loginPage("/login").usernameParameter("email")
             .and().logout().logoutSuccessUrl("/");
