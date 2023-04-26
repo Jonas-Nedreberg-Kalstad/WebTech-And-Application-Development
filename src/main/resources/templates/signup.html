@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/style.css">
+  <title>Sign in</title>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-  <title>Sign in site</title>
+  <link rel="stylesheet" href="../static/css/Login-Signin.css">
 </head>
 <body>
 <div class="wrapper">
@@ -18,11 +17,11 @@
       </div>
       <div class="col-md-6 right">
         <div class="input-box">
-          <header>Create account</header>
+          <header>Create an account</header>
           <form method="post" th:action="@{/signup}" th:object="${signupData}">
             <div class="input-field">
-            <input type="text" class="input" id="firstName" required autocomplete="off" name="firstName">
-            <label for="firstName">First Name</label>
+              <input type="text" class="input" id="firstName" required autocomplete="off" name="firstName">
+              <label for="firstName">First Name</label>
             </div>
             <div class="input-field">
               <input type="text" class="input" id="lastName" required autocomplete="off" name="lastName">
@@ -37,21 +36,23 @@
               <label for="password">Password</label>
             </div>
             <div class="input-field">
-              <input type="password" class="input" id="confirmPassword">
-              <label for="confirmPassword">Confirm password</label>
+              <input type="password" class="input" id="confirmPassword" required name="confirmPassword">
+              <label for="confirmPassword">Confirm Password</label>
             </div>
             <div class="input-field">
-              <button type="submit" class="submit">Sign Up</button>
+              <input type="submit" class="submit" value="Sign Up">
             </div>
           </form>
           <div class="signin">
-            <span>Already have an account? <a href="login">Log in here</a></span>
+            <span>Already have an account? <a href="login.html">Log in here</a></span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+</div>
+</body>
 <script>
   const password = document.getElementById('password');
   const confirm_password = document.getElementById('confirmPassword');
@@ -67,5 +68,7 @@
   password.addEventListener('change', validatePassword);
   confirm_password.addEventListener('keyup', validatePassword);
 </script>
+</section>
+
 </body>
 </html>
