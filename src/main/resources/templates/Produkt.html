@@ -1,110 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:Article="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
-    <title>Product</title>
+  <meta charset="UTF-8">
+  <title>Product</title>
 
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/produkt.css">
 
 </head>
-
 <body>
 
 <nav th:insert="components/navbar"></nav>
 
-<div class="row">
-  <div class="col-12 col-lg-6">
-    <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ekko_28.jpg" class="img-fluid">
-  </div>
-
-  <div class="col-12 col-lg-6">
-
-    <h2 id="product name"> Product name</h2>
-    <small class="text-muted"> Article:02 </small>
-    <h4  class="my-4"><span id="price">500</span> NOK</h4>
-    <p class="text-muted">This is a recurring payment subscription</p>
-    <label for="period" class="text-black">
-      Payment period:
-    </label>
-    <select
-            class="form-select"
-            name="selectPeriod"
-            id="period"
-    >
-      <option selected>month</option>
-      <option selected>year</option>
-      <option selected>two years</option>
-      <option selected>five years</option>
-    </select>
-
-    <button type="button" class="btn btn-outline-dark mt-3 mb-5">Add to cart </button>
-
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-            Decription of the software type
-          </button>
-        </h2>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-          <div class="accordion-body">
-            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
+<div class="Wrapper">
+  <div class="container main">
+    <div class="row">
+      <div class="col-md-6 image-box">
+        <img src="../Images/Product 1.jpg" alt="">
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-            Accordion Item #2
-          </button>
-        </h2>
-        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-          <div class="accordion-body">
-            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
+      <div class="col-md-6 buy-box">
+        <h2>ProFlex Tax Solutions</h2>
+        <p>Categories: tax, legal, accounting</p>
+        <h3>200 NOK</h3>
+        <button class="btn btn-primary">Buy Now</button>
+      </div>
+      <div class="information">
+        <h5>Product Details</h5>
+        <p>Description: ProFlex Tax Solutions is the perfect software for businesses looking to streamline
+          their tax preparation and filing process. Our intuitive user interface makes it easy to enter your
+          data quickly and accurately, and our automated workflow will help you get the most out of your
+          tax filing. Our software is secure, reliable, and efficient, allowing you to focus on your business
+          without worrying about the security of your data. With ProFlex Tax Solutions, you can take
+          control of your tax preparation process and maximize your success</p>
       </div>
     </div>
   </div>
-
-
-
-<a href="Produktside.html" target="_self">
-  Produktside
-</a>
-
-
-
-
-  <footer th:insert="components/footer"></footer>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
-    <script>
-      const accordionHeaders = document.querySelectorAll('.accordion-header');
-      accordionHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-          // Get the collapse element corresponding to the clicked header
-          const collapse = header.querySelector('[data-bs-target]');
-
-          // Check if the corresponding collapse element is already open
-          const isOpen = collapse.classList.contains('show');
-
-          // If it's open, close it; otherwise, do nothing (i.e. let the accordion toggle the state)
-          if (isOpen) {
-            collapse.classList.remove('show');
-          }
-        });
-      });
-    </script>
 </div>
+
+<footer th:insert="components/footer"></footer>
+
 </body>
+
 </html>
