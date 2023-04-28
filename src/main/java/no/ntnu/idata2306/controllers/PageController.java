@@ -68,7 +68,7 @@ public class PageController {
 
   @GetMapping("/shop")
   public String getProductPage(){
-    return "Produktside";
+    return "productsite";
   }
 
 }
