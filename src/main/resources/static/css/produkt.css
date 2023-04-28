@@ -23,8 +23,6 @@
     max-width: 500px;
     height: 600px;
     padding: 3%;
-    position: relative;
-    overflow: hidden;
 }
 .image-box img{
     width: 100%;
