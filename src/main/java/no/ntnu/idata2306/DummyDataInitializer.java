@@ -63,7 +63,10 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
     if (userRepository.count() == 0 && productRepository.count() == 0 && orderRepository.count() == 0) {
 
-      Image image1 = new Image("ItThings.jpeg", "Image of our some fancy IT things "
+      Image image1 = new Image("Product 1.jpg", "Image of our some fancy IT things "
+              + "(it has nothing to do with our product).");
+
+      Image image2 = new Image("Product 2.png", "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
 
@@ -89,12 +92,15 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
               "Jend@ntnu.no",
               BCrypt.hashpw("FuckIDATA2024", BCrypt.gensalt()));
 
+      jenny.addRole(user);
+
       userRepository.save(jenny);
 
       Product consultation = new Product(
               "Consultation",
               100000,
-              "Consultation services"
+              "Consultation services",
+              image1
       );
 
       productRepository.save(consultation);
@@ -104,7 +110,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
               "IT solution",
               150000,
               "It solution",
-              image1
+              image2
 
       );
 

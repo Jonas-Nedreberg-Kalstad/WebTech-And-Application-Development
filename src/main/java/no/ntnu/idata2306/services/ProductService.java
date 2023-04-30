@@ -41,10 +41,10 @@ public class ProductService {
    * @param id id of product
    * @return product with given id
    */
-  public Optional<Product> getProduct(int id) {
+  public Product getProduct(int id) {
     // TODO - decide if method should return null, Optional#empty(),
     //  or throw an exception if there is not product with given id.
     //  As of now it returns Optional#empty().
-    return productRepository.findById(id);
+    return productRepository.findById(id).orElse(null);
   }
 }

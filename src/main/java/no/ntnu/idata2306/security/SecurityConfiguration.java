@@ -57,15 +57,15 @@ public class SecurityConfiguration {
     // Allow JWT authentication
     http.csrf().disable()
             .authorizeHttpRequests()
+            .requestMatchers("/api/products/{id}").hasAuthority("admin")
+            .requestMatchers("/api/products").hasAnyAuthority("user", "admin")
             .requestMatchers("/login").permitAll()
             .requestMatchers("/signup").permitAll()
-            .requestMatchers("/product").permitAll()
-            .requestMatchers("/shop").permitAll()
-            .requestMatchers("/api/products").hasAuthority("user")
+            .requestMatchers("/products").permitAll()
+            .requestMatchers("/products/{id}").permitAll()
             .requestMatchers("/").permitAll()
             .requestMatchers("/images/**").permitAll()
             .requestMatchers("/css/**").permitAll()
-            .requestMatchers("/api/products/{id}").hasAuthority("admin")
             .and().formLogin().loginPage("/login").usernameParameter("email")
             .and().logout().logoutSuccessUrl("/");
     return http.build();

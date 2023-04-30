@@ -50,7 +50,7 @@ public class ProductController {
    */
   @GetMapping("/api/products/{id}")
   public ResponseEntity<?> getProduct(@PathVariable int id) {
-    Optional<Product> product = productService.getProduct(id);
+    Product product = productService.getProduct(id);
     return new ResponseEntity<>(product, HttpStatus.OK);
   }
 }
