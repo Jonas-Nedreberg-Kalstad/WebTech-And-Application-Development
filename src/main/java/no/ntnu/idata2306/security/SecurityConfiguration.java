@@ -54,7 +54,7 @@ public class SecurityConfiguration {
    */
   @Bean
   public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
-    // Allow JWT authentication
+    // Setting up the authorization requests, starting from the most restrictive to least restrictive
     http.csrf().disable()
             .authorizeHttpRequests()
             .requestMatchers("/api/products/{id}").hasAuthority("admin")

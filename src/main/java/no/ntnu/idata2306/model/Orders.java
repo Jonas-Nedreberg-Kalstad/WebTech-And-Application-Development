@@ -1,5 +1,6 @@
 package no.ntnu.idata2306.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ public class Orders {
   @Column(name = "Date", nullable = false, updatable = false)
   private LocalDateTime date;
 
+  @JsonManagedReference
   @ManyToOne()
   @JoinColumns({
           @JoinColumn(name = "product_id", referencedColumnName = "id")
