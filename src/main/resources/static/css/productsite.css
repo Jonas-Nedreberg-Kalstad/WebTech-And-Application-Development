@@ -45,6 +45,9 @@ img:hover {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.div-product-description {
+    height: 70px;
+}
 
 a[href].btn-primary {
     margin-top: 6px;

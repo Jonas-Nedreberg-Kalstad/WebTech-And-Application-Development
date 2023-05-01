@@ -6,7 +6,7 @@
         <div class="card mb-3">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <a href="#">
+                    <a th:href="@{'/products/' + ${product.id}}">
                         <img class="float-left" th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}" height="6000" width="4000" alt="..." src=""/>
                     </a>
                 </div>
@@ -15,14 +15,14 @@
                         <div>
                             <h5 class="card-title" th:text="${product.productName}"></h5>
                         </div>
-                        <div style="height: 70px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <div class="div-product-description">
                             <p class="card-text" th:text="${product.description}"></p>
                         </div>
                         <div>
                             <p class="card-text"><strong th:text="'Price: ' + ${product.price} + ' NOK'"></strong></p>
                         </div>
                         <div class="text-md-right text-center">
-                            <a href="#" class="btn btn-primary">View Product</a>
+                            <a th:href="@{'/products/' + ${product.id}}" class="btn btn-primary">View Product</a>
                         </div>
                     </div>
                 </div>
