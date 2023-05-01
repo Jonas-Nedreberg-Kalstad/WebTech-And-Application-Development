@@ -1,5 +1,6 @@
 package no.ntnu.idata2306.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -31,6 +32,7 @@ public class Orders {
   })
   private Product product;
 
+  @JsonManagedReference
   @ManyToOne()
   @JoinColumns({
           @JoinColumn(name = "user_id", referencedColumnName = "id")
