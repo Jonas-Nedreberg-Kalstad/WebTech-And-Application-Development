@@ -1,0 +1,173 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: #ececec;
+}
+
+.hidden{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+    transition: all 2s;
+}
+
+.show {
+    opacity: 1;
+    filter:blur(0);
+    transform: translateX(0);
+}
+
+section{
+    display: grid;
+    min-height: 100vh;
+}
+.container{
+    width: 100%;
+    height: 92vh;
+    position: relative;
+}
+.container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.text{
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-300%);
+    text-shadow: 0 0 10px black;
+}
+.container .start-button{
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-100%);
+    text-shadow: 0 0 10px black;
+}
+.container .start-button a{
+    background: blue;
+    padding:12px 30px;
+    text-decoration: none;
+    color:white;
+    font-size:25px;
+    letter-spacing: 2px;
+}
+.container .start-button a:hover{
+    background-color: red;
+    color: black;
+}
+
+.get-started{
+    width: 85%;
+    height: 100%;
+    display: block;
+    margin:auto;
+}
+.get-started h1{
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 8%;
+}
+
+.content-section{
+    float:left;
+    width:50%;
+}
+
+.content-section .button{
+    padding-top: 20px;
+}
+.content-section .button a{
+    background: blue;
+    padding:12px 30px;
+    text-decoration: none;
+    color:white;
+    font-size:25px;
+    letter-spacing: 2px;
+}
+
+.content-section .button a:hover{
+    background-color: red;
+    color: black;
+}
+.image-section{
+    float: right;
+    width: 45%;
+}
+.image-section img{
+    width: 100%;
+    height: auto;
+    margin-left: 70px;
+}
+
+@media screen and (max-width: 1000px){
+    .get-started{
+        width: 80%;
+        display: block;
+        margin:auto;
+        padding-top: 50px;
+    }
+
+    .content-section {
+        align-content: center;
+        float: none;
+        width: 100%;
+        display: block;
+        margin:auto;
+    }
+
+    .image-section{
+        align-items: center;
+        align-content: center;
+
+    }
+    .image-section img{
+        float: left;
+        display: block;
+        margin-top: 40px;
+
+    }
+
+    .content-section .button{
+        text-align: center;
+        padding-top: 15px;
+    }
+    .content-section .button a{
+        padding: 9px 30px;
+    }
+}
+.popular-products{
+    align-content: center;
+    width: 85%;
+    height: 100%;
+    display: block;
+    margin:auto;
+}
+.popular-products h1{
+    text-align: center;
+}
+
+.card-container{
+    margin-top: 10%;
+}
+
+.col-md-4{
+    width: 20rem;
+    height: 30rem;
+}
+.card{
+    width: 100%;
+    height: 100%;
+}
+.card img{
+    object-fit: cover;
+
+}
+.card-image-top{
+    height: 50%;
+}
