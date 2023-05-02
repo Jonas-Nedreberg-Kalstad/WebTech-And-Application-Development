@@ -66,6 +66,7 @@ public class SecurityConfiguration {
             .requestMatchers("/").permitAll()
             .requestMatchers("/images/**").permitAll()
             .requestMatchers("/css/**").permitAll()
+            .requestMatchers("/js/**").permitAll()
             .and().formLogin().loginPage("/login").usernameParameter("email")
             .and().logout().logoutSuccessUrl("/");
     return http.build();
