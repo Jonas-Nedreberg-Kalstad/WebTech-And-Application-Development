@@ -74,4 +74,10 @@ public class PageController {
     return "productsite";
   }
 
+  @GetMapping("/")
+  public String getHomePage(Model model){
+    model.addAttribute("products", productService.getFirstNProductsFromDatabase(3));
+    return "index";
+  }
+
 }

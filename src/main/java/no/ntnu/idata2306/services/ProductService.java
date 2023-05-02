@@ -6,6 +6,7 @@ import java.util.Optional;
 import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 
@@ -46,5 +47,15 @@ public class ProductService {
     //  or throw an exception if there is not product with given id.
     //  As of now it returns Optional#empty().
     return productRepository.findById(id).orElse(null);
+  }
+
+  /**
+   * Get the first n products from the database.
+   *
+   * @param n The number of books to select
+   * @return An iterable over the books, empty when no books found.
+   */
+  public Iterable<Product> getFirstNProductsFromDatabase(int n) {
+    return productRepository.findAll(PageRequest.of(0, n));
   }
 }

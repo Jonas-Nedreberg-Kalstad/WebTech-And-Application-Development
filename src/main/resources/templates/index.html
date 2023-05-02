@@ -54,41 +54,13 @@
             <h1> Our most popular products</h1>
             <div class="container">
                 <div class="row gy-4">
-                    <div class="col-sm">
+                    <div class="col-sm" th:each="product: ${products}">
                         <div class="card">
-                            <img src="/images/Product 6.jpg" class="card-img-top" alt="Card image caped">
+                            <img th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}" class="card-img-top" alt="Card image caped">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm">
-                        <div class="card">
-                            <img src="/images/Product 1.jpg" class="card-img-top" alt="Card image caped">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm">
-                        <div class="card">
-                            <img src="/images/Product 4.jpg" class="card-img-top" alt="card image caped">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h5 class="card-title" th:text="${product.productName}">Card title</h5>
+                                <p class="card-text" th:text="${product.description}"></p>
+                                <a th:href="@{'/products/' + ${product.id}}" class="btn btn-primary">Go somewhere</a>
                             </div>
                         </div>
                     </div>
