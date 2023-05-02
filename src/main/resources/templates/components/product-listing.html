@@ -1,6 +1,5 @@
 <div class="wrapper">
     <h1 class="display-1 text-center">Products</h1>
-    <h2 class="text-center">blah blah blah blah blah blah</h2>
 
     <div th:each="product: ${products}" class="container d-flex justify-content-center">
         <div class="card mb-3">
@@ -19,7 +18,7 @@
                             <p class="card-text" th:text="${product.description}"></p>
                         </div>
                         <div>
-                            <p class="card-text"><strong th:text="'Price: ' + ${product.price} + ' NOK'"></strong></p>
+                            <p class="card-text"><strong th:text="'Price: ' + ${#numbers.formatDecimal(product.price, 0, 0)} + ' NOK'"></strong></p>
                         </div>
                         <div class="text-md-right text-center">
                             <a th:href="@{'/products/' + ${product.id}}" class="btn btn-primary">View Product</a>

@@ -25,7 +25,7 @@ public class Product {
   private String productName;
   @Column(name = "price", nullable = false)
   private double price;
-  @Column(name = "description", nullable = false)
+  @Column(name = "description", nullable = false, length = 2000)
   private String description;
   @Embedded
   private Image image;

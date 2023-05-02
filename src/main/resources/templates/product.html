@@ -19,19 +19,14 @@
         <img th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}" alt="">
       </div>
       <div class="col-md-6 buy-box">
-        <h2 th:text="${product.productName}">ProFlex Tax Solutions</h2>
+        <h2 th:text="${product.productName}"></h2>
         <p>Categories: tax, legal, accounting</p>
-        <h3 th:text="'Price: ' + ${product.price} + ' NOK'">200 NOK</h3>
-        <button class="btn btn-primary">Buy Now</button>
+        <h3 th:text="${#numbers.formatDecimal(product.price, 0, 0)} + ' NOK'"></h3>
+        <button class="btn btn-primary">Checkout</button>
       </div>
       <div class="information">
-        <h5>Product Details</h5>
-        <p th:text="${product.description}">Description: ProFlex Tax Solutions is the perfect software for businesses looking to streamline
-          their tax preparation and filing process. Our intuitive user interface makes it easy to enter your
-          data quickly and accurately, and our automated workflow will help you get the most out of your
-          tax filing. Our software is secure, reliable, and efficient, allowing you to focus on your business
-          without worrying about the security of your data. With ProFlex Tax Solutions, you can take
-          control of your tax preparation process and maximize your success</p>
+        <h5>Product Description</h5>
+        <p th:text="${product.description}"></p>
       </div>
     </div>
   </div>
