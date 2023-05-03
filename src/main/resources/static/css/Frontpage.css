@@ -190,6 +190,7 @@ body{
     object-fit: cover;
 
 }
-.card-image-top{
-    height: 50%;
+.card-img-top {
+    max-width: 100%;
+    max-height: 230px; /* adjust to your desired height */
 }
