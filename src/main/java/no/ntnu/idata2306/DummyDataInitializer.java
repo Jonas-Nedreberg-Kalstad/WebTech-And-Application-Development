@@ -63,22 +63,22 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
     if (userRepository.count() == 0 && productRepository.count() == 0 && orderRepository.count() == 0) {
 
-      Image image1 = new Image("Product 1.jpg", "Image of our some fancy IT things "
+      Image image1 = new Image("Online Scheduling Software.jpg", "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
-      Image image2 = new Image("Product 2.png", "Image of our some fancy IT things "
+      Image image2 = new Image("Proflex BPA Solutions.png", "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
-      Image image3 = new Image("Product 3.png", "Image of our some fancy IT things "
+      Image image3 = new Image("ProFlex Tax Solutions.png", "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
-      Image image4 = new Image("Product 4.jpg", "Image of our some fancy IT things "
+      Image image4 = new Image("ProFlex Accounting Solutions.jpg", "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
-      Image image5 = new Image("Product 5.png", "Image of our some fancy IT things "
+      Image image5 = new Image("Legal Solutions.png", "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
-      Image image6 = new Image("Product 6.jpg", "Image of our some fancy IT things "
+      Image image6 = new Image("ProFlex Financial Advisor Pro.jpg", "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
 
