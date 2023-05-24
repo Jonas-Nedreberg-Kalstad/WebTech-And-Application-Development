@@ -74,6 +74,11 @@ public class PageController {
     return "productsite";
   }
 
+  @GetMapping("/aboutUs")
+  public String getAboutUsPage(){
+    return "aboutUs";
+  }
+
   @GetMapping("/")
   public String getHomePage(Model model){
     model.addAttribute("products", productService.getFirstNProductsFromDatabase(3));
