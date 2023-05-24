@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/productsite.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body>
 
@@ -17,6 +18,85 @@
 <div th:insert="components/product-listing"></div>
 
 <footer th:insert="components/footer"></footer>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" data-bs-backdrop="static" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Contact information</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-field space icon-relative">
+                    <label class="label">E-mail:</label>
+                    <input type="email" class="input" placeholder="email@address.com" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="input-field space icon-relative">
+                    <label class="label">Phone Number:</label>
+                    <input type="tel" class="input" placeholder="123 45 678" data-mask="000 00 000" required>
+                    <i class="fas fa-phone fa-flip-horizontal"></i>
+                </div>
+                <div class="submit d-flex justify-content-center">
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Go To Payment</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" data-bs-backdrop="static" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Payment Gateway</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- other modal content -->
+                <div class="input-field space icon-relative">
+                    <label class="label">Card holder:</label>
+                    <input type="text" class="input" placeholder="Card Holder" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="input-field space icon-relative">
+                    <label class="label">Card number:</label>
+                    <input type="text" class="input" data-mask="0000 0000 0000 0000" placeholder="Card Number" required>
+                    <i class="far fa-credit-card"></i>
+                </div>
+                <div class="input-field-grp space">
+                    <div class="card-item icon-relative">
+                        <label class="label">Expiry date:</label>
+                        <input type="text" name="expiry-data" class="input" placeholder="00 / 00" data-mask="00/00" required>
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <div class="card-item icon-relative">
+                        <label class="label">CVC:</label>
+                        <input type="text" class="input" data-mask="000" placeholder="000" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                <p>Product: ProFlex Tax Solutions</p>
+                <p>Amount: 2000 NOK</p>
+                <div class="purchase d-flex justify-content-center">
+                    <button class="btn btn-primary" type="submit">Purchase</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 </body>
 
