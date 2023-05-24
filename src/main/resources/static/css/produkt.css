@@ -1,9 +1,4 @@
-*{
-    margin:0px;
-    padding: 0px;
-    box-sizing: border-box;
-}
-.Wrapper{
+* .Wrapper{
     background: #ececec;
 }
 .main{
@@ -29,7 +24,7 @@
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
-    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 10px 1px rgba(0.2,0.2,0.2,0.2);
 }
 
 .buy-box{
@@ -65,9 +60,9 @@
     text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: #ececec;
+    border: 1px solid #070707;
+    background-color: #ffffff;
     color: #070707;
-    border: none;
     transition: all 0.2s ease-in-out;
     width: 150px;
 }
@@ -86,4 +81,112 @@
 }
 .information p{
     text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+
+/* modal */
+.input-box{
+    width: 330px;
+    box-sizing: border-box;
+}
+.input-box h2{
+    font-weight: 500;
+    text-align: left;
+    letter-spacing: 2px;
+}
+
+.form .label{
+    display: block;
+    color: #555555;
+    margin-bottom: 6px;
+}
+
+.input{
+    padding: 13px 0px 13px 25px;
+    width: 100%;
+    text-align: center;
+    border: 2px solid #dddddd;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    outline: none;
+    font-size: 16px;
+    color: #555555;
+}
+
+.input-field-grp{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-item{
+    width: 48%;
+}
+
+.space{
+    margin-bottom: 20px;
+}
+
+.icon-relative{
+    position: relative;
+}
+
+.icon-relative .fas,
+.icon-relative .far{
+    position: absolute;
+    bottom: 17px;
+    left: 15px;
+    font-size: 20px;
+    color: #555555;
+}
+
+.modal-footer {
+    justify-content: flex-start;
+}
+
+.modal-footer .btn-primary {
+    margin-right: 10px;
+}
+
+
+
+.purchase button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #59a3ee;
+    color: #070707;
+    transition: all 0.2s ease-in-out;
+    width: 150px;
+    justify-content: center;
+    border: 1px solid #070707;
+
+}
+.purchase button:hover{
+    background-color: #000;
+    color: #fff;
+    transition: background-color 0.2s ease;
+}
+
+.submit button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #070707;
+    transition: all 0.2s ease-in-out;
+    width: 150px;
+    justify-content: center;
+    border: 1px solid #070707;
+
+}
+
+.submit button:hover{
+    background-color: #000;
+    color: #fff;
+    transition: background-color 0.2s ease;
 }
