@@ -53,9 +53,9 @@ a[href].btn-primary {
     margin-top: 6px;
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: #ececec;
+    background-color: #fff;
     color: #070707;
-    border: none;
+    border: 1px solid #070707;
     transition: all 0.2s ease-in-out;
 }
 
