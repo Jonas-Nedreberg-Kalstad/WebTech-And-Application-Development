@@ -46,7 +46,6 @@ public class PageController {
    */
   @GetMapping("/signup")
   public String getSignUp(Model model) {
-    model.addAttribute("signupData", new SignUpDto());
     return "signup";
   }
 

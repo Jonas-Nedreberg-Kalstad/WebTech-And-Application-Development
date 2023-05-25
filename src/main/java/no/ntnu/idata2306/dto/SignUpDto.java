@@ -18,7 +18,11 @@ public class SignUpDto {
   /**
    * Creates a new instance of SignUpDto.
    */
-  public SignUpDto() {
+  public SignUpDto(String firstName, String lastName, String email, String password) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.password = password;
   }
 
   /**
