@@ -41,11 +41,10 @@ public class PageController {
   /**
    * Retrieves the signup page.
    *
-   * @param model The model to be used for rendering the view.
-   * @return The sign-up template name.
+   * @return The signup template name.
    */
   @GetMapping("/signup")
-  public String getSignUp(Model model) {
+  public String getSignUp() {
     return "signup";
   }
 
