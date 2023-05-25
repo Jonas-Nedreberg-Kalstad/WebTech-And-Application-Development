@@ -14,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
 
   private final UserDetailsService userDetailsService;
+  private final String ADMIN = "admin";
 
   /**
    * Creates a new instance of SecurityConfiguration.
@@ -54,11 +55,13 @@ public class SecurityConfiguration {
    */
   @Bean
   public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
-    // Setting up the authorization requests, starting from the most restrictive to least restrictive
+    // Setting up the authorization requests, starting from the most restrictive to the least restrictive
     http.csrf().disable()
             .authorizeHttpRequests()
-            .requestMatchers("/api/products/{id}").hasAuthority("admin")
-            .requestMatchers("/api/products").hasAnyAuthority("user", "admin")
+            .requestMatchers("/api/products/{id}").hasAuthority(ADMIN)
+            .requestMatchers("/api/products").hasAnyAuthority("user", ADMIN)
+            .requestMatchers("/api/users").hasAnyAuthority(ADMIN)
+            .requestMatchers("/api/users/{id}").hasAnyAuthority(ADMIN)
             .requestMatchers("/login").anonymous()
             .requestMatchers("/signup").anonymous()
             .requestMatchers("/products").permitAll()

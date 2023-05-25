@@ -3,7 +3,9 @@ package no.ntnu.idata2306.services;
 import java.util.Optional;
 
 import no.ntnu.idata2306.dto.SignUpDto;
+import no.ntnu.idata2306.model.Role;
 import no.ntnu.idata2306.model.User;
+import no.ntnu.idata2306.repositories.RoleRepository;
 import no.ntnu.idata2306.repositories.UserRepository;
 import no.ntnu.idata2306.security.AccessUserDetails;
 import org.springframework.security.core.Authentication;
@@ -25,14 +27,17 @@ public class UserService implements UserDetailsService {
 
   private static final int MIN_PASSWORD_LENGTH = 4;
   private final UserRepository userRepository;
+  private final RoleRepository roleRepository;
 
   /**
    * creates a new instance of userService.
    *
    * @param userRepository userRepository
+   * @param roleRepository roleRepository
    */
-  public UserService(UserRepository userRepository) {
+  public UserService(UserRepository userRepository, RoleRepository roleRepository) {
     this.userRepository = userRepository;
+    this.roleRepository = roleRepository;
   }
 
   /**
@@ -40,7 +45,7 @@ public class UserService implements UserDetailsService {
    *
    * @param userInfo information provided by SignUpDto instance
    */
-  public void createUser(SignUpDto userInfo) {
+  public void createUserForSignUp(SignUpDto userInfo) {
     if (!validEmail(userInfo.getEmail())) {
       throw new IllegalArgumentException("Invalid email format.");
     }
@@ -57,8 +62,75 @@ public class UserService implements UserDetailsService {
       loadUserByUsername(userInfo.getEmail());
       throw new IllegalArgumentException("Email already registered.");
     } catch (NullPointerException e) {
-      userRepository.save(new User(userInfo.getFirstName(), userInfo.getLastName(), userInfo.getEmail(), createHash(userInfo.getPassword())));
+      User user = new User(userInfo.getFirstName(), userInfo.getLastName(), userInfo.getEmail(), createHash(userInfo.getPassword()));
+
+      Role userRole = roleRepository.findByName("user").orElseThrow(() -> new IllegalArgumentException("Role user not found"));
+
+      user.getRoles().add(userRole);
+
+      userRepository.save(user);
+
     }
+  }
+
+
+  /**
+   * Retrieves a user by ID.
+   *
+   * @param id The ID of the user.
+   * @return Optional containing the user if found, or an empty Optional if the user is not found.
+   */
+  public Optional<User> getUserById(int id) {
+    return userRepository.findById(id);
+  }
+
+  /**
+   * Creates a new user.
+   *
+   * @param user The User object to be created.
+   * @return The created User object.
+   */
+  public User createUser(User user) {
+    return userRepository.save(user);
+  }
+
+  /**
+   * Updates an existing user.
+   *
+   * @param id          The ID of the user to be updated.
+   * @param updatedUser The updated User object.
+   * @return The updated User object if successful, or null if the user is not found.
+   */
+  public User updateUser(int id, User updatedUser) {
+    Optional<User> existingUser = userRepository.findById(id);
+    if (existingUser.isPresent()) {
+      User user = existingUser.get();
+      user.setFirstName(updatedUser.getFirstName());
+      user.setLastName(updatedUser.getLastName());
+      user.setEmail(updatedUser.getEmail());
+      user.setPassword(createHash(updatedUser.getPassword()));
+      return userRepository.save(user);
+    }
+    return null;
+  }
+
+  /**
+   * Deletes a user.
+   *
+   * @param id The ID of the user to be deleted.
+   */
+  public void deleteUser(int id) {
+    userRepository.deleteById(id);
+  }
+
+  /**
+   * Adds admin role to the user
+   *
+   * @param user user to have admin added to it
+   */
+  public void setAdminRole(User user){
+    Role adminRole = roleRepository.findByName("admin").orElseThrow(() -> new IllegalArgumentException("Role admin not found"));
+    user.getRoles().add(adminRole);
   }
 
   /**

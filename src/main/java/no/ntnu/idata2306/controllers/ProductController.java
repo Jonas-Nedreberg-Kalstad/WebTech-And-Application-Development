@@ -6,10 +6,7 @@ import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.services.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * REST API controller for all endpoints related to products.
@@ -49,12 +46,66 @@ public class ProductController {
    * @return product with given id
    */
   @GetMapping("/api/products/{id}")
-  public ResponseEntity<?> getProduct(@PathVariable int id) {
-    Product product = productService.getProduct(id);
-    if (product == null) {
-      return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+  public ResponseEntity<Optional<Product>> getProduct(@PathVariable int id) {
+    ResponseEntity<Optional<Product>> response;
+    Optional<Product> product = productService.getProduct(id);
+    if (product.isEmpty()) {
+      response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    } else {
+      response = new ResponseEntity<>(product, HttpStatus.OK);
     }
 
-    return new ResponseEntity<>(product, HttpStatus.OK);
+    return response;
   }
+
+  /**
+   * Creates a new product.
+   *
+   * @param product The Product object to be created.
+   * @return ResponseEntity containing the created Product and HTTP status code 201 (CREATED).
+   */
+  @PostMapping("/api/products")
+  public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+    productService.createProduct(product);
+    return new ResponseEntity<>(product, HttpStatus.CREATED);
+  }
+
+  /**
+   * Updates an existing product.
+   *
+   * @param id The ID of the product to be updated.
+   * @param updatedProduct The updated Product object.
+   * @return ResponseEntity containing the updated Product (Optional) and HTTP status code 200 (OK) if successful,
+   * or HTTP status code 404 (NOT_FOUND) if the product with the given ID doesn't exist.
+   */
+  @PutMapping("/api/products/{id}")
+  public ResponseEntity<Optional<Product>> updateProduct(@PathVariable int id, @RequestBody Optional<Product> updatedProduct) {
+    Optional<Product> existingProduct = productService.getProduct(id);
+    if (existingProduct.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    } else {
+      productService.updateProduct(updatedProduct);
+      return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+    }
+  }
+
+
+  /**
+   * Deletes a product.
+   *
+   * @param id The ID of the product to be deleted.
+   * @return ResponseEntity with HTTP status code 204 (NO_CONTENT) if successful,
+   * or HTTP status code 404 (NOT_FOUND) if the product with the given ID doesn't exist.
+   */
+  @DeleteMapping("/api/products/{id}")
+  public ResponseEntity<Optional<Product>> deleteProduct(@PathVariable int id) {
+    Optional<Product> existingProduct = productService.getProduct(id);
+    if (existingProduct.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    } else {
+      productService.deleteProduct(id);
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+  }
+
 }

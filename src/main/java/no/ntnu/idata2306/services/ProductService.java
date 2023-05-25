@@ -37,16 +37,13 @@ public class ProductService {
   }
 
   /**
-   * returns product with given id if it exists in product repository.
+   * Retrieves the product with the given ID from the database, if it exists.
    *
-   * @param id id of product
-   * @return product with given id
+   * @param id The ID of the product.
+   * @return An Optional containing the product with the given ID, or empty if no product is found.
    */
-  public Product getProduct(int id) {
-    // TODO - decide if method should return null, Optional#empty(),
-    //  or throw an exception if there is not product with given id.
-    //  As of now it returns Optional#empty().
-    return productRepository.findById(id).orElse(null);
+  public Optional<Product> getProduct(int id) {
+    return productRepository.findById(id);
   }
 
   /**
@@ -58,4 +55,32 @@ public class ProductService {
   public Iterable<Product> getFirstNProductsFromDatabase(int n) {
     return productRepository.findAll(PageRequest.of(0, n));
   }
+
+  /**
+   * Creates a new product by saving it to the database.
+   *
+   * @param product The product to be created.
+   */
+  public void createProduct(Product product) {
+    productRepository.save(product);
+  }
+
+  /**
+   * Updates an existing product by saving the changes to the database.
+   *
+   * @param optionalProduct The product to be updated.
+   */
+  public void updateProduct(Optional<Product> optionalProduct) {
+    optionalProduct.ifPresent(product -> productRepository.save(product));
+  }
+
+  /**
+   * Deletes a product from the database based on the provided ID.
+   *
+   * @param id The ID of the product to be deleted.
+   */
+  public void deleteProduct(int id) {
+    productRepository.deleteById(id);
+  }
+
 }
