@@ -65,23 +65,33 @@ public class PageController {
   @GetMapping("/products/{id}")
   public String getProduct(@PathVariable int id, Model model){
     model.addAttribute("product", productService.getProduct(id));
+    model.addAttribute("user", userService.getSessionUser());
     return "product";
   }
 
   @GetMapping("/products")
   public String getProductPage(Model model){
     model.addAttribute("products", productService.getAll());
+    model.addAttribute("user", userService.getSessionUser());
     return "productsite";
   }
 
-  @GetMapping("/aboutUs")
-  public String getAboutUsPage(){
-    return "aboutUs";
+  @GetMapping("/about")
+  public String getAboutUsPage(Model model){
+    model.addAttribute("user", userService.getSessionUser());
+    return "aboutus";
+  }
+
+  @GetMapping("/contact")
+  public String getContactPage(Model model){
+    model.addAttribute("user", userService.getSessionUser());
+    return "contactus";
   }
 
   @GetMapping("/")
   public String getHomePage(Model model){
     model.addAttribute("products", productService.getFirstNProductsFromDatabase(3));
+    model.addAttribute("user", userService.getSessionUser());
     return "index";
   }
 

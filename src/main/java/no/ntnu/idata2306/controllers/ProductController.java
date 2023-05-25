@@ -51,6 +51,10 @@ public class ProductController {
   @GetMapping("/api/products/{id}")
   public ResponseEntity<?> getProduct(@PathVariable int id) {
     Product product = productService.getProduct(id);
+    if (product == null) {
+      return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+    }
+
     return new ResponseEntity<>(product, HttpStatus.OK);
   }
 }

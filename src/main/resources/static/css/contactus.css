@@ -10,7 +10,7 @@ body{
 }
 
 .as-banner-image{
-    background-image: url("../Images/free image13big.jpg");
+    background-image: url("/images/free image13big.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -20,20 +20,20 @@ body{
 
 @media (max-width: 600px) {
     .as-banner-image{
-        background-image: url("../Images/free image13 smal.jpg");
+        background-image: url("/images/free image13 smal.jpg");
     }
 }
 
 @media (min-width: 601px) and (max-width: 900px) {
     .as-banner-image{
-        background-image: url("../Images/free image13.jpg");
+        background-image: url("/images/free image13.jpg");
 
     }
 }
 
 @media (min-width: 901px) {
     .as-banner-image{
-        background-image: url("../Images/free image13big.jpg");
+        background-image: url("/images/free image13big.jpg");
 
     }
 }
