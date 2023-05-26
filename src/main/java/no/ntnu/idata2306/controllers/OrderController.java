@@ -68,7 +68,7 @@ public class OrderController {
    * @return ResponseEntity containing the created order and HTTP status code 201 (CREATED).
    */
   @PostMapping("/api/products")
-  public ResponseEntity<Orders> createProduct(@RequestBody Orders order) {
+  public ResponseEntity<Orders> createOrder(@RequestBody Orders order) {
     orderService.createOrder(order);
     return new ResponseEntity<>(order, HttpStatus.CREATED);
   }
@@ -82,7 +82,7 @@ public class OrderController {
    * or HTTP status code 404 (NOT_FOUND) if the order with the given ID doesn't exist.
    */
   @PutMapping("/api/products/{id}")
-  public ResponseEntity<Optional<Orders>> updateProduct(@PathVariable int id, @RequestBody Optional<Orders> updatedOrder) {
+  public ResponseEntity<Optional<Orders>> updateOrder(@PathVariable int id, @RequestBody Optional<Orders> updatedOrder) {
     Optional<Orders> existingProduct = orderService.getOrder(id);
     if (existingProduct.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -102,7 +102,7 @@ public class OrderController {
    * or HTTP status code 404 (NOT_FOUND) if the order with the given ID doesn't exist.
    */
   @DeleteMapping("/api/orders/{id}")
-  public ResponseEntity<Optional<Orders>> deleteProduct(@PathVariable int id) {
+  public ResponseEntity<Optional<Orders>> deleteOrder(@PathVariable int id) {
     Optional<Orders> existingProduct = orderService.getOrder(id);
     if (existingProduct.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
