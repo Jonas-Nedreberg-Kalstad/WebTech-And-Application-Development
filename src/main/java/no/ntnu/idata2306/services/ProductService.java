@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ProductService {
-  private ProductRepository productRepository;
+  private final ProductRepository productRepository;
 
   public ProductService(ProductRepository productRepository) {
     this.productRepository = productRepository;
@@ -71,7 +70,7 @@ public class ProductService {
    * @param optionalProduct The product to be updated.
    */
   public void updateProduct(Optional<Product> optionalProduct) {
-    optionalProduct.ifPresent(product -> productRepository.save(product));
+    optionalProduct.ifPresent(productRepository::save);
   }
 
   /**

@@ -162,7 +162,6 @@ public class UserService implements UserDetailsService {
 
   /**
    * Checks if a submitted email follows the email format.
-   *
    * <b>Currently checks if:
    * -email contains an @-symbol, and only one @-symbol
    * -email does not contain empty spaces
@@ -192,7 +191,7 @@ public class UserService implements UserDetailsService {
         //The second part of an email address must be at least 3 characters long and contain a full stop.
         boolean s2Valid = s2.contains(".");
         if (s2Valid) {
-          String[] s2Sections = s2.split(".");
+          String[] s2Sections = s2.split("\\.");
           int i = 0;
           //Checks if each section is empty.
           while (s2Valid && i < s2Sections.length) {
@@ -205,8 +204,6 @@ public class UserService implements UserDetailsService {
         }
         valid = s1Valid && s2Valid;
       }
-    } else {
-      valid = false;
     }
     return valid;
   }

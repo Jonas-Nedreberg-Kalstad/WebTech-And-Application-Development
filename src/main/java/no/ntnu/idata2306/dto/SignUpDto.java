@@ -14,7 +14,6 @@ public class SignUpDto {
   private String password;
 
 
-
   /**
    * Creates a new instance of SignUpDto.
    */

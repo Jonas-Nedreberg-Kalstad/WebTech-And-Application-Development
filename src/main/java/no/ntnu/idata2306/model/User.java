@@ -1,14 +1,9 @@
 package no.ntnu.idata2306.model;
 
-import static org.springframework.security.crypto.bcrypt.BCrypt.gensalt;
-import static org.springframework.security.crypto.bcrypt.BCrypt.hashpw;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import no.ntnu.idata2306.dto.SignUpDto;
-
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 

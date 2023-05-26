@@ -24,7 +24,6 @@ import java.util.Optional;
 public class PageController {
 
   ProductService productService;
-
   UserService userService;
 
   /**

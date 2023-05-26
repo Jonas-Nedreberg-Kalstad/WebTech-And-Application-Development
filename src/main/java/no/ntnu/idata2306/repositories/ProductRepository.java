@@ -16,10 +16,10 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends CrudRepository<Product, Integer> {
 
   /**
-   * Finding all books using pagination
+   * Finding all products using pagination
    *
    * @param pageable pagination configuration using limit and offset.
-   * @return return all books with given paging
+   * @return return all orders with given paging
    */
   Page<Product> findAll(Pageable pageable);
 }
