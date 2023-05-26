@@ -72,6 +72,8 @@ public class SecurityConfiguration {
             .requestMatchers("/images/**").permitAll()
             .requestMatchers("/css/**").permitAll()
             .requestMatchers("/js/**").permitAll()
+            .requestMatchers("/api/orders/{id}").hasAnyAuthority(ADMIN)
+            .requestMatchers("/api/orders").hasAnyAuthority(ADMIN)
             .and().formLogin().loginPage("/login").usernameParameter("email")
             .and().logout().logoutSuccessUrl("/");
     return http.build();
