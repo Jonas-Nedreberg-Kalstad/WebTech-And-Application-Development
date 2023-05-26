@@ -56,7 +56,7 @@
                 <div class="row gy-4">
                     <div class="col-sm" th:each="product: ${products}">
                         <div class="card">
-                            <img th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}" class="card-img-top" alt="Card image caped">
+                            <img th:src="@{/images/product.image.imageLink}" class="card-img-top" alt="Card image caped">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${product.productName}">Card title</h5>
                                 <p class="card-text" th:text="${product.description}"></p>
