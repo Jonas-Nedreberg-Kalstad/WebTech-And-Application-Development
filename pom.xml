@@ -72,6 +72,12 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.sendgrid</groupId>
+			<artifactId>sendgrid-java</artifactId>
+			<version>4.8.0</version>
+		</dependency>
+
 
 		<!-- For Apache Derby in-memory database -->
 		<dependency>
@@ -82,8 +88,13 @@
                  https://stackoverflow.com/questions/66844429/where-is-the-derby-embedded-driver -->
 			<version>10.14.2.0</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>
