@@ -7,6 +7,8 @@ import no.ntnu.idata2306.services.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 /**
  * REST API controller for all endpoints related to products.
@@ -43,19 +45,22 @@ public class ProductController {
    * get a product from database matching given id if it exists.
    *
    * @param id potential id of a product
-   * @return product with given id
+   * @return a ModelAndView containing product in JSON format or page-not-found
    */
   @GetMapping("/api/products/{id}")
-  public ResponseEntity<Optional<Product>> getProduct(@PathVariable int id) {
-    ResponseEntity<Optional<Product>> response;
+  public ModelAndView getProduct(@PathVariable int id) {
     Optional<Product> product = productService.getProduct(id);
+    ModelAndView modelAndView;
     if (product.isEmpty()) {
-      response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      modelAndView = new ModelAndView("page-not-found");
+      modelAndView.setStatus(HttpStatus.NOT_FOUND);
     } else {
-      response = new ResponseEntity<>(product, HttpStatus.OK);
+      // The product is displayed in JSON format
+      modelAndView = new ModelAndView();
+      modelAndView.addObject("product", product.get());
+      modelAndView.setView(new MappingJackson2JsonView());
     }
-
-    return response;
+    return modelAndView;
   }
 
   /**

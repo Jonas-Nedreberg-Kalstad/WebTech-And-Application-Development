@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -87,12 +89,16 @@ public class PageController {
    *
    * @param id    The ID of the product.
    * @param model The model to be used for rendering the view.
-   * @return The product page template name.
+   * @return The product page template name or page-not-found based on if product exists or not.
    */
   @GetMapping("/products/{id}")
   public String getProduct(@PathVariable int id, Model model) {
     Optional<Product> optionalProduct = productService.getProduct(id);
-    Product product = optionalProduct.orElse(new Product());
+    if (optionalProduct.isEmpty()) {
+      return "page-not-found";
+    }
+
+    Product product = optionalProduct.get();
     model.addAttribute("product", product);
     model.addAttribute("user", userService.getSessionUser());
     return "product";
