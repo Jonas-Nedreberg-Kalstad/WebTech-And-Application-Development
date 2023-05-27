@@ -31,6 +31,10 @@ body{
     position: relative;
 }
 
+.product-text-decoration-none {
+    color: inherit;
+    text-decoration: none;
+}
 
 .front-page-image{
     background-image: linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.60)),url("/images/Free img 14big.jpg");
