@@ -11,15 +11,16 @@ public class Main {
    * Temporary test
    */
   public static void main(String[] args) throws Exception {
-    Email from = new Email("jonasned@stud.ntnu.no");
+    Email from = new Email("omarmmo@stud.ntnu.no");
     String subject = "Hello from SendGrid!";
-    Email to = new Email("ProFlexReceipt@gmail.com");
+    Email to = new Email("amermoussa@hotmail.com");
 
     // Create a new Mail object with template ID
     Mail mail = new Mail();
     mail.setFrom(from);
     mail.setSubject(subject);
 
+    // Set the template ID
     mail.setTemplateId(System.getenv("SENDGRID_TEMPLATE_ID"));
 
     Personalization personalization = new Personalization();
