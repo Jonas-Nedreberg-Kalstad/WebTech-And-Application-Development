@@ -1,12 +1,12 @@
 package no.ntnu.idata2306.security;
 
+import java.util.*;
 import no.ntnu.idata2306.model.Role;
 import no.ntnu.idata2306.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.*;
 
 /**
  * Contains authentication information, needed by UserDetailsService.
@@ -43,6 +43,7 @@ public class AccessUserDetails implements UserDetails {
 
   /**
    * Returns authorities of user.
+   *
    * @return authoresses
    */
   @Override
@@ -57,7 +58,6 @@ public class AccessUserDetails implements UserDetails {
   public String getPassword() {
     return password;
   }
-
 
   /**
    * Returns the username used for login in, which is user email.

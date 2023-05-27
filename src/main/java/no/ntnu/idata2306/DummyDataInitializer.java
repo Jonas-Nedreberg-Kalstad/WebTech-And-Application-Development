@@ -5,14 +5,13 @@ import no.ntnu.idata2306.repositories.OrderRepository;
 import no.ntnu.idata2306.repositories.ProductRepository;
 import no.ntnu.idata2306.repositories.RoleRepository;
 import no.ntnu.idata2306.repositories.UserRepository;
+import java.time.LocalDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
 
 /**
  * Responsible for populating database with dummy data for testing.
@@ -63,22 +62,28 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
     if (userRepository.count() == 0 && productRepository.count() == 0 && orderRepository.count() == 0) {
 
-      Image image1 = new Image("Online Scheduling Software.jpg", "Image of our some fancy IT things "
+      Image image1 = new Image("Online Scheduling Software.jpg",
+              "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
-      Image image2 = new Image("Proflex BPA Solutions.jpg", "Image of our some fancy IT things "
+      Image image2 = new Image("Proflex BPA Solutions.jpg",
+              "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
-      Image image3 = new Image("ProFlex Tax Solutions.jpg", "Image of our some fancy IT things "
+      Image image3 = new Image("ProFlex Tax Solutions.jpg",
+              "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
-      Image image4 = new Image("ProFlex Accounting Solutions.jpg", "Image of our some fancy IT things "
+      Image image4 = new Image("ProFlex Accounting Solutions.jpg",
+              "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
-      Image image5 = new Image("Legal Solutions.jpg", "Image of our some fancy IT things "
+      Image image5 = new Image("Legal Solutions.jpg",
+              "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
-      Image image6 = new Image("ProFlex Financial Advisor Pro.jpg", "Image of our some fancy IT things "
+      Image image6 = new Image("ProFlex Financial Advisor Pro.jpg",
+              "Image of our some fancy IT things "
               + "(it has nothing to do with our product).");
 
 

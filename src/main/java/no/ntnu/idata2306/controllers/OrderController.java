@@ -1,7 +1,6 @@
 package no.ntnu.idata2306.controllers;
 
 import no.ntnu.idata2306.model.Orders;
-import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.services.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,6 @@
 package no.ntnu.idata2306.services;
 
 import java.util.Optional;
-
 import no.ntnu.idata2306.dto.SignUpDto;
 import no.ntnu.idata2306.model.Role;
 import no.ntnu.idata2306.model.User;
