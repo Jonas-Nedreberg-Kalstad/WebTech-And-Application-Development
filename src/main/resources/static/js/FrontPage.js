@@ -1,10 +1,10 @@
-
-const observer = new IntersectionObserver((entries) =>{
+const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
-        console.log(entry)
-        if (entry.isIntersecting) {
+        console.log(entry);
+        if (entry.isIntersecting && !entry.target.classList.contains('show')) {
             entry.target.classList.add('show');
-        } else{
+            observer.unobserve(entry.target); // Disconnect the observer after the animation is triggered
+        } else {
             entry.target.classList.remove('show');
         }
     });
@@ -12,3 +12,4 @@ const observer = new IntersectionObserver((entries) =>{
 
 const hiddenElements = document.querySelectorAll('.hidden');
 hiddenElements.forEach((el) => observer.observe(el));
+
