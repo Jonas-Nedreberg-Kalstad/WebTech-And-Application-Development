@@ -14,12 +14,6 @@ import java.io.IOException;
 @Service
 public class EmailService {
 
-  @Value("${sendgrid.api.key}")
-  private String sendGridApiKey;
-
-  @Value("${sendgrid.template.id}")
-  private String templateId;
-
   public void sendEmail(EmailDto emailDto) throws IOException {
     Email from = new Email(emailDto.getFrom());
     String subject = emailDto.getSubject();
@@ -37,10 +31,10 @@ public class EmailService {
     Mail mail = new Mail();
     mail.setFrom(from);
     mail.setSubject(subject);
-    mail.setTemplateId(templateId);
+    mail.setTemplateId(System.getenv("SENDGRID_TEMPLATE_ID"));
     mail.addPersonalization(personalization);
 
-    SendGrid sg = new SendGrid(sendGridApiKey);
+    SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
     Request request = new Request();
 
     try {

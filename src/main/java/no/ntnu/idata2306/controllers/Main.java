@@ -20,7 +20,7 @@ public class Main {
     mail.setFrom(from);
     mail.setSubject(subject);
 
-    mail.setTemplateId("d-2c5a560d3b0d4627bd5a56cf4a2a1913");
+    mail.setTemplateId(System.getenv("SENDGRID_TEMPLATE_ID"));
 
     Personalization personalization = new Personalization();
     personalization.addTo(to);
@@ -32,7 +32,7 @@ public class Main {
 
     mail.addPersonalization(personalization);
 
-    String apiKey = "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";
+    String apiKey = System.getenv("SENDGRID_API_KEY");
 
     SendGrid sg = new SendGrid(apiKey);
 
