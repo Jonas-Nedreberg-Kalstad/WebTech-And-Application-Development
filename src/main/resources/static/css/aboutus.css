@@ -9,12 +9,12 @@ body{
     font-family: 'Nunito Sans', sans-serif;
 
 }
-.container-main{
+.container{
     align-content: center;
     justify-content: center;
 }
 
-.container-main h1{
+.container h1{
     text-align: center;
     border: 50px;
     padding: 50px;
