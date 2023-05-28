@@ -1,6 +1,7 @@
 * body{
     font-family: 'Nunito Sans', sans-serif;
 }
+
 .Wrapper{
     background: #ececec;
     display: flex;
@@ -8,7 +9,7 @@
     font-family: 'Nunito Sans', sans-serif;
 
 }
-.container{
+.container-main{
     align-content: center;
     justify-content: center;
 }
