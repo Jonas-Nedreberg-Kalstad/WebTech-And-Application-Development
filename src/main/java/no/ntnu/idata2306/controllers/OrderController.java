@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * REST API controller for all endpoints related to orders.
+ */
 @CrossOrigin
 @RestController
 public class OrderController {

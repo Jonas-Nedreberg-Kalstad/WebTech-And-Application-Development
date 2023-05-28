@@ -16,7 +16,6 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
  * @author Edvin Astad
  * @version 17.03.2023
  */
-
 @CrossOrigin
 @RestController
 public class ProductController {

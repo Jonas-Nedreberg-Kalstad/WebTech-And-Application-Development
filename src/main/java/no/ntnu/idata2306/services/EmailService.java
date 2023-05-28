@@ -64,8 +64,8 @@ public class EmailService {
       System.out.println(response.getStatusCode());
       System.out.println(response.getBody());
       System.out.println(response.getHeaders());
-    } catch (IOException ex) {
-      throw ex;
+    } catch (IOException e) {
+      throw e;
     }
   }
 }

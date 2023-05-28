@@ -1,7 +1,6 @@
 package no.ntnu.idata2306.services;
 
 import no.ntnu.idata2306.model.Orders;
-import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.model.User;
 import no.ntnu.idata2306.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
