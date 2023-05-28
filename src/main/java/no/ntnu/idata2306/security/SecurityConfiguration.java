@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 
 @Configuration
@@ -76,12 +77,26 @@ public class SecurityConfiguration {
             .requestMatchers("/js/**").permitAll()
             .requestMatchers("/api/orders/{id}").hasAnyAuthority(ADMIN)
             .requestMatchers("/api/orders").hasAnyAuthority(ADMIN)
+            .requestMatchers("/access-denied").permitAll()
+            .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler())
             .and().formLogin().loginPage("/login").usernameParameter("email")
             .and().logout().logoutSuccessUrl("/");
     return http.build();
   }
 
-  /** Returns userDetailsService. */
+  /**
+   * Returns a custom AccessDeniedHandler
+   *
+   * @return returns custom AccessDeniedHandler
+   */
+  @Bean
+  public AccessDeniedHandler accessDeniedHandler() {
+    return new CustomAccessDeniedHandler();
+  }
+
+  /**
+   * Returns userDetailsService.
+   */
   public UserDetailsService getUserDetailsService() {
     return userDetailsService;
   }

@@ -2,7 +2,11 @@ package no.ntnu.idata2306.controllers;
 
 import jakarta.servlet.http.HttpServletResponse;
 import no.ntnu.idata2306.dto.SignUpDto;
+import no.ntnu.idata2306.model.Orders;
 import no.ntnu.idata2306.model.Product;
+import no.ntnu.idata2306.model.User;
+import no.ntnu.idata2306.services.EmailService;
+import no.ntnu.idata2306.services.OrderService;
 import no.ntnu.idata2306.services.ProductService;
 import no.ntnu.idata2306.services.UserService;
 import org.springframework.http.HttpStatus;
@@ -13,10 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
@@ -25,8 +28,12 @@ import java.util.Optional;
 @Controller
 public class PageController {
 
-  ProductService productService;
-  UserService userService;
+  private final ProductService productService;
+  private final UserService userService;
+
+  private final OrderService orderService;
+
+  private final EmailService emailService;
 
   /**
    * Creates a new instance of the PageController class.
@@ -34,9 +41,11 @@ public class PageController {
    * @param productService The ProductService instance to be used.
    * @param userService    The UserService instance to be used.
    */
-  public PageController(ProductService productService, UserService userService) {
+  public PageController(ProductService productService, UserService userService, OrderService orderService, EmailService emailService) {
     this.productService = productService;
     this.userService = userService;
+    this.orderService = orderService;
+    this.emailService = emailService;
   }
 
   /**
@@ -85,7 +94,7 @@ public class PageController {
   }
 
   /**
-   * Retrieves the product page for the given product ID.
+   * Retrieves the product page for the given product ID or page-not-found.
    *
    * @param id    The ID of the product.
    * @param model The model to be used for rendering the view.
@@ -102,6 +111,37 @@ public class PageController {
     model.addAttribute("product", product);
     model.addAttribute("user", userService.getSessionUser());
     return "product";
+  }
+
+  /**
+   * Processes the purchase form data (HTTP POST) and handles the purchase process.
+   * Sends an email containing purchase receipt to the user after purchase.
+   *
+   * @param id The ID of the product being purchased.
+   * @param httpServletResponse The HttpServletResponse object for redirecting to the home page.
+   * @return The ResponseEntity containing the response status and body.
+   */
+  @PostMapping("/products/{id}")
+  public ResponseEntity<String> purchaseProcess(@PathVariable int id, HttpServletResponse httpServletResponse) {
+    ResponseEntity<String> response;
+    try {
+      User loggedInUser = userService.getSessionUser();
+      Optional<Product> optionalProduct = productService.getProduct(id);
+
+      if (loggedInUser == null || optionalProduct.isEmpty()) {
+        response = new ResponseEntity<>("User or product not found", HttpStatus.NOT_FOUND);
+      } else {
+        Product product = optionalProduct.get();
+        Orders order = new Orders(LocalDateTime.now(), product, loggedInUser);
+        orderService.createOrder(order);
+        emailService.sendEmail(loggedInUser, product, order);
+        httpServletResponse.sendRedirect("/");
+        response = new ResponseEntity<>(HttpStatus.OK);
+      }
+    } catch (IOException e) {
+      response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error sending email");
+    }
+    return response;
   }
 
   /**
@@ -139,6 +179,16 @@ public class PageController {
   public String getContactPage(Model model) {
     model.addAttribute("user", userService.getSessionUser());
     return "contactus";
+  }
+
+  /**
+   * Retrieves the access-denied page.
+   *
+   * @return The access-denied template name.
+   */
+  @GetMapping("/access-denied")
+  public String accessDenied() {
+    return "access-denied";
   }
 
   /**

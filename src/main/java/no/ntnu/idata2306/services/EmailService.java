@@ -4,33 +4,52 @@ import com.sendgrid.*;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Email;
 import com.sendgrid.helpers.mail.objects.Personalization;
-import no.ntnu.idata2306.dto.EmailDto;
+import no.ntnu.idata2306.model.Orders;
+import no.ntnu.idata2306.model.Product;
+import no.ntnu.idata2306.model.User;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-
+/**
+ * Service class responsible for sending emails.
+ */
 @Service
 public class EmailService {
 
-  public void sendEmail(EmailDto emailDto) throws IOException {
-    Email from = new Email(emailDto.getFrom());
-    String subject = emailDto.getSubject();
-    Email to = new Email(emailDto.getTo());
+  /**
+   * Sends an email to the specified user with the receipt for the given order.
+   *
+   * @param user    The User representing the recipient of the email.
+   * @param product The Product representing the purchased product.
+   * @param order   The Orders representing the order details.
+   * @throws IOException if there is an error in sending the email.
+   */
+  public void sendEmail(User user, Product product, Orders order) throws IOException {
+    Email from = new Email("omarmmo@stud.ntnu.no");
+    Email to = new Email(user.getEmail());
+
+    Mail mail = new Mail();
+    mail.setFrom(from);
+
+    mail.setTemplateId(System.getenv("SENDGRID_TEMPLATE_ID"));
 
     Personalization personalization = new Personalization();
     personalization.addTo(to);
 
-    personalization.addDynamicTemplateData("orderDate", emailDto.getOrderDate());
-    personalization.addDynamicTemplateData("userEmail", emailDto.getUserEmail());
-    personalization.addDynamicTemplateData("orderNumber", emailDto.getOrderNumber());
-    personalization.addDynamicTemplateData("productName", emailDto.getProductName());
-    personalization.addDynamicTemplateData("price", String.valueOf(emailDto.getPrice()));
+    // Formatting time
+    LocalDateTime orderDate = order.getDate();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    String formattedOrderDate = orderDate.format(formatter);
 
-    Mail mail = new Mail();
-    mail.setFrom(from);
-    mail.setSubject(subject);
-    mail.setTemplateId(System.getenv("SENDGRID_TEMPLATE_ID"));
+    // Setting the dynamic fields
+    personalization.addDynamicTemplateData("orderDate", formattedOrderDate);
+    personalization.addDynamicTemplateData("orderNumber", order.getId());
+    personalization.addDynamicTemplateData("productName", product.getProductName());
+    personalization.addDynamicTemplateData("price", product.getPrice());
+
     mail.addPersonalization(personalization);
 
     SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));

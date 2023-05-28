@@ -13,13 +13,14 @@
 </head>
 <body>
 
-<nav th:insert="components/navbar"></nav>
+<nav th:replace="~{components/navbar}"></nav>
 
 <div class="Wrapper">
   <div class="container main">
     <div class="row">
       <div class="col-md-6 image-box">
-        <img th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}" alt="">
+        <img class="float-left" th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}" height="6000" width="4000"
+             th:alt="${product.image.imageDescription}" src=""/>
       </div>
       <div class="col-md-6 buy-box">
         <h2 th:text="${product.productName}"></h2>
@@ -47,33 +48,35 @@
       </div>
       <div class="modal-body">
         <!-- other modal content -->
-        <div class="input-field space icon-relative">
-          <label class="label">Card holder:</label>
-          <input type="text" class="input" placeholder="Card Holder" required>
-          <i class="fas fa-user"></i>
-        </div>
-        <div class="input-field space icon-relative">
-          <label class="label">Card number:</label>
-          <input type="text" class="input" data-mask="0000 0000 0000 0000" placeholder="Card Number" required>
-          <i class="far fa-credit-card"></i>
-        </div>
-        <div class="input-field-grp space">
-          <div class="card-item icon-relative">
-            <label class="label">Expiry date:</label>
-            <input type="text" name="expiry-data" class="input" placeholder="00 / 00" data-mask="00/00" required>
-            <i class="far fa-calendar-alt"></i>
+        <form method="post" th:action="@{/products/{id}(id=${product.id})}">
+          <div class="input-field space icon-relative">
+            <label class="label">Card holder:</label>
+            <input type="text" class="input" placeholder="Card Holder" required>
+            <i class="fas fa-user"></i>
           </div>
-          <div class="card-item icon-relative">
-            <label class="label">CVC:</label>
-            <input type="text" class="input" data-mask="000" placeholder="000" required>
-            <i class="fas fa-lock"></i>
+          <div class="input-field space icon-relative">
+            <label class="label">Card number:</label>
+            <input type="text" class="input" data-mask="0000 0000 0000 0000" placeholder="Card Number" required>
+            <i class="far fa-credit-card"></i>
           </div>
-        </div>
-        <p th:text="'Product: ' + ${product.productName}"></p>
-        <p th:text="'Amount: ' + ${#numbers.formatDecimal(product.price, 0, 0)} + ' NOK'"></p>
-        <div class="purchase d-flex justify-content-center">
-          <button class="btn btn-primary" type="submit">Purchase</button>
-        </div>
+          <div class="input-field-grp space">
+            <div class="card-item icon-relative">
+              <label class="label">Expiry date:</label>
+              <input type="text" name="expiry-data" class="input" placeholder="00 / 00" data-mask="00/00" required>
+              <i class="far fa-calendar-alt"></i>
+            </div>
+            <div class="card-item icon-relative">
+              <label class="label">CVC:</label>
+              <input type="text" class="input" data-mask="000" placeholder="000" required>
+              <i class="fas fa-lock"></i>
+            </div>
+          </div>
+          <p th:text="'Product: ' + ${product.productName}"></p>
+          <p th:text="'Amount: ' + ${#numbers.formatDecimal(product.price, 0, 0)} + ' NOK'"></p>
+          <div class="purchase d-flex justify-content-center">
+            <button class="btn btn-primary" type="submit">Purchase</button>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
@@ -85,7 +88,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
-<footer th:insert="components/footer"></footer>
+<footer th:replace="~{components/footer}"></footer>
 
 </body>
 

@@ -15,11 +15,11 @@
 </head>
 <body>
 
-<nav th:insert="components/navbar"></nav>
+<nav th:replace="~{components/navbar}"></nav>
 
-<div th:insert="components/product-listing"></div>
+<div th:replace="~{components/product-listing}"></div>
 
-<footer th:insert="components/footer"></footer>
+<footer th:replace="~{components/footer}"></footer>
 
 </body>
 

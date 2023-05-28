@@ -6,7 +6,8 @@
             <div class="row no-gutters">
                 <div class="col-md-4">
                     <a th:href="@{'/products/' + ${product.id}}">
-                        <img class="float-left" th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}" height="6000" width="4000" alt="..." src=""/>
+                        <img class="float-left" th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}" height="6000" width="4000"
+                             th:alt="${product.image.imageDescription}" src=""/>
                     </a>
                 </div>
                 <div class="col-md-8">

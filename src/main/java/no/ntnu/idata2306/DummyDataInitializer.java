@@ -63,28 +63,22 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     if (userRepository.count() == 0 && productRepository.count() == 0 && orderRepository.count() == 0) {
 
       Image image1 = new Image("Online Scheduling Software.jpg",
-              "Image of a hand holding a phone with a calender on it "
-              + "(it has nothing to do with our product).");
+              "Image of a hand holding a phone with a calender on it ");
 
       Image image2 = new Image("Proflex BPA Solutions.jpg",
-              "Image of a monitor with different post notes on it, to resemble a connection"
-              + "(it has nothing to do with our product).");
+              "Image of a monitor with different post notes on it, to resemble a connection");
 
       Image image3 = new Image("ProFlex Tax Solutions.jpg",
-              "Image of a monitor with a tax solution both on the screen and on paper behind the monitor"
-              + "(it has nothing to do with our product).");
+              "Image of a monitor with a tax solution both on the screen and on paper behind the monitor");
 
       Image image4 = new Image("ProFlex Accounting Solutions.jpg",
-              "Image of a laptop with fancy statics and graphs on the screen"
-              + "(it has nothing to do with our product).");
+              "Image of a laptop with fancy statics and graphs on the screen");
 
       Image image5 = new Image("Legal Solutions.jpg",
-              "Image of a computer and some paper in the background that has numbers on it to resemble a plan"
-              + "(it has nothing to do with our product).");
+              "Image of a computer and some paper in the background that has numbers on it to resemble a plan");
 
       Image image6 = new Image("ProFlex Financial Advisor Pro.jpg",
-              "Image of a computer on a desk with bar charts on it "
-              + "(it has nothing to do with our product).");
+              "Image of a computer on a desk with bar charts on it ");
 
 
 
@@ -94,6 +88,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
       roleRepository.save(user);
       roleRepository.save(admin);
 
+      // Test users
       User jon = new User(
               "Jon",
               "Smith",
