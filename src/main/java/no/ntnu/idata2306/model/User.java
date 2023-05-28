@@ -1,6 +1,7 @@
 package no.ntnu.idata2306.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import no.ntnu.idata2306.dto.SignUpDto;
@@ -31,6 +32,8 @@ public class User {
   private String password;
   @Column(name = "active", nullable = false, unique = false, updatable = true)
   private boolean active;
+
+  @JsonManagedReference
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "user_role",
           joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),

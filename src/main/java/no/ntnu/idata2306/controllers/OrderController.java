@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,22 +47,25 @@ public class OrderController {
   }
 
   /**
-   * Get product with given id.
+   * Get an order from database matching given id if it exists.
    *
-   * @param id product id
-   * @return product with given id
+   * @param id potential id of an order
+   * @return a ModelAndView containing order in JSON format or page-not-found
    */
   @GetMapping("/api/orders/{id}")
-  public ResponseEntity<Optional<Orders>> getOrderById(@PathVariable int id) {
-    ResponseEntity<Optional<Orders>> response;
+  public ModelAndView getOrder(@PathVariable int id) {
     Optional<Orders> order = orderService.getOrder(id);
+    ModelAndView modelAndView;
     if (order.isEmpty()) {
-      response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      modelAndView = new ModelAndView("page-not-found");
+      modelAndView.setStatus(HttpStatus.NOT_FOUND);
     } else {
-      response = new ResponseEntity<>(order, HttpStatus.OK);
+      // The order is displayed in JSON format
+      modelAndView = new ModelAndView();
+      modelAndView.addObject("order", order.get());
+      modelAndView.setView(new MappingJackson2JsonView());
     }
-
-    return response;
+    return modelAndView;
   }
 
   /**
@@ -76,7 +81,7 @@ public class OrderController {
   }
 
   /**
-   * Updates an existing product.
+   * Updates an existing order.
    *
    * @param id The ID of the order to be updated.
    * @param updatedOrder The updated order object.
@@ -85,8 +90,8 @@ public class OrderController {
    */
   @PutMapping("/api/orders/{id}")
   public ResponseEntity<Optional<Orders>> updateOrder(@PathVariable int id, @RequestBody Optional<Orders> updatedOrder) {
-    Optional<Orders> existingProduct = orderService.getOrder(id);
-    if (existingProduct.isEmpty()) {
+    Optional<Orders> existingOrder = orderService.getOrder(id);
+    if (existingOrder.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     } else {
       orderService.updateOrder(updatedOrder);
@@ -103,8 +108,8 @@ public class OrderController {
    */
   @DeleteMapping("/api/orders/{id}")
   public ResponseEntity<Optional<Orders>> deleteOrder(@PathVariable int id) {
-    Optional<Orders> existingProduct = orderService.getOrder(id);
-    if (existingProduct.isEmpty()) {
+    Optional<Orders> existingOrder = orderService.getOrder(id);
+    if (existingOrder.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     } else {
       orderService.deleteOrder(id);

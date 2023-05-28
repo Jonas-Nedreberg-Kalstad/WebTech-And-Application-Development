@@ -41,7 +41,7 @@ public class ProductController {
   }
 
   /**
-   * get a product from database matching given id if it exists.
+   * Get a product from database matching given id if it exists.
    *
    * @param id potential id of a product
    * @return a ModelAndView containing product in JSON format or page-not-found

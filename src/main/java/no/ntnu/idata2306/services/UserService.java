@@ -1,7 +1,10 @@
 package no.ntnu.idata2306.services;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import no.ntnu.idata2306.dto.SignUpDto;
+import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.model.Role;
 import no.ntnu.idata2306.model.User;
 import no.ntnu.idata2306.repositories.RoleRepository;
@@ -37,6 +40,17 @@ public class UserService implements UserDetailsService {
   public UserService(UserRepository userRepository, RoleRepository roleRepository) {
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
+  }
+
+  /**
+   * returns all users stored in user repository.
+   *
+   * @return all users stored in user repository
+   */
+  public List<User> getAll() {
+    List<User> users = new LinkedList<>();
+    userRepository.findAll().forEach(users::add);
+    return users;
   }
 
   /**

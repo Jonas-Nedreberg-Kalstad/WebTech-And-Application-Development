@@ -7,7 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -35,15 +38,35 @@ public class UserController {
   }
 
   /**
-   * Retrieves a user by ID.
+   * Get a user from database matching given id if it exists.
    *
-   * @param id The ID of the user.
-   * @return ResponseEntity containing the user if found, or HTTP status code 404 (NOT_FOUND) if the user is not found.
+   * @param id potential id of a user
+   * @return a ModelAndView containing user in JSON format or page-not-found
    */
   @GetMapping("/api/users/{id}")
-  public ResponseEntity<User> getUserById(@PathVariable int id) {
+  public ModelAndView getUser(@PathVariable int id) {
     Optional<User> user = userService.getUserById(id);
-    return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    ModelAndView modelAndView;
+    if (user.isEmpty()) {
+      modelAndView = new ModelAndView("page-not-found");
+      modelAndView.setStatus(HttpStatus.NOT_FOUND);
+    } else {
+      // The user is displayed in JSON format
+      modelAndView = new ModelAndView();
+      modelAndView.addObject("user", user.get());
+      modelAndView.setView(new MappingJackson2JsonView());
+    }
+    return modelAndView;
+  }
+
+  /**
+   * Get all users stored in database.
+   *
+   * @return List of all available users.
+   */
+  @GetMapping("/api/users")
+  public List<User> getAll() {
+    return userService.getAll();
   }
 
   /**

@@ -1,5 +1,6 @@
 package no.ntnu.idata2306.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
@@ -23,6 +24,7 @@ public class Role {
   @Column(name = "name", nullable = false, unique = true)
   private String name;
 
+  @JsonBackReference
   @ManyToMany(mappedBy = "roles")
   private Set<User> users = new LinkedHashSet<>();
 
