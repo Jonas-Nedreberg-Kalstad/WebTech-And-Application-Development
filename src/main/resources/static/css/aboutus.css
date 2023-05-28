@@ -1,7 +1,13 @@
-* .Wrapper{
+* body{
+    font-family: 'Nunito Sans', sans-serif;
+
+}
+.Wrapper{
     background: #ececec;
     display: flex;
     align-content: center;
+    font-family: 'Nunito Sans', sans-serif;
+
 }
 .container{
     align-content: center;
