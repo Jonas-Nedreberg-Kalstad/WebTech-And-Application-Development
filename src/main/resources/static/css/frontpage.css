@@ -100,6 +100,7 @@ body{
     border: 2px solid #ffffff;
     background: transparent;
     color: #fff;
+    letter-spacing: 2px;
 }
 .front-page-buttons{
     padding-top: 20px;
@@ -115,6 +116,7 @@ body{
     border: 2px solid #fff;
     background: black;
     color: #fff;
+    letter-spacing: 2px;
 }
 
 /**
