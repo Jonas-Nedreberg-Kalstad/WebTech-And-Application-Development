@@ -6,9 +6,12 @@
 }
 body{
     width: 100%;
-    background-color: #ececec;
     font-family: 'Nunito Sans', sans-serif;
 
+}
+
+.wrapper {
+    background-color: #ececec;
 }
 
 .as-banner-image{
