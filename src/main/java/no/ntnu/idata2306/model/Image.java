@@ -1,5 +1,6 @@
 package no.ntnu.idata2306.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 /**
@@ -10,7 +11,10 @@ import jakarta.persistence.*;
  */
 @Embeddable
 public class Image {
+  @Schema(description = "Image link of the product")
   private String imageLink;
+
+  @Schema(description = "Image description of the product")
   private String imageDescription;
 
   /** Empty constructor. */

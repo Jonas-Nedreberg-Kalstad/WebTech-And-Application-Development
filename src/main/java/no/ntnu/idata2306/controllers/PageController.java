@@ -168,6 +168,17 @@ public class PageController {
     model.addAttribute("user", userService.getSessionUser());
     return "aboutus";
   }
+  /**
+   * Retrieves the view-profile page.
+   *
+   * @param model The model to be used for rendering the view.
+   * @return The view-profile template name.
+   */
+  @GetMapping("/view-profile")
+  public String getViewProfilePage(Model model) {
+    model.addAttribute("user", userService.getSessionUser());
+    return "view-profile";
+  }
 
   /**
    * Retrieves the contact us page.

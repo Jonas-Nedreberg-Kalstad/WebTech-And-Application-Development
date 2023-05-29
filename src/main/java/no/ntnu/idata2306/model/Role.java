@@ -19,13 +19,16 @@ public class Role {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false, unique = true)
+  @Schema(description = "ID of the role")
   private int id;
 
   @Column(name = "name", nullable = false, unique = true)
+  @Schema(description = "Name of the role")
   private String name;
 
   @JsonBackReference
   @ManyToMany(mappedBy = "roles")
+  @Schema(description = "Users with the given role")
   private Set<User> users = new LinkedHashSet<>();
 
   /**

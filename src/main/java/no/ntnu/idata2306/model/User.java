@@ -21,16 +21,22 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false, unique = true)
+  @Schema(description = "ID of the user")
   private int id;
   @Column(name = "first_name", nullable = false, unique = false)
+  @Schema(description = "First name of the user")
   private String firstName;
   @Column(name = "last_name", nullable = false, unique = false)
+  @Schema(description = "Last name of the user")
   private String lastName;
   @Column(name = "email", nullable = false, unique = true, updatable = false)
+  @Schema(description = "Email of the user")
   private String email;
   @Column(name = "password", nullable = false, unique = false)
+  @Schema(description = "Password of the user")
   private String password;
   @Column(name = "active", nullable = false, unique = false, updatable = true)
+  @Schema(description = "If user account is active or not")
   private boolean active;
 
   @JsonManagedReference
@@ -39,10 +45,12 @@ public class User {
           joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
   )
+  @Schema(description = "Roles the user has")
   private Set<Role> roles = new LinkedHashSet<>();
 
   @JsonBackReference
   @OneToMany(mappedBy = "customer")
+  @Schema(description = "Orders the user have ordered")
   private Set<Orders> orders = new LinkedHashSet<>();
 
   /**

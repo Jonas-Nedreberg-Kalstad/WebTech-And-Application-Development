@@ -1,6 +1,7 @@
 package no.ntnu.idata2306.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -16,12 +17,15 @@ public class Orders {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false, updatable = false)
+  @Schema(description = "ID of the order")
   private int id;
 
   @Column(name = "price", nullable = false, updatable = false)
+  @Schema(description = "Price of the order")
   private double salePrice;
 
   @Column(name = "Date", nullable = false, updatable = false)
+  @Schema(description = "Date of the order")
   private LocalDateTime date;
 
   @JsonManagedReference
@@ -29,6 +33,7 @@ public class Orders {
   @JoinColumns({
           @JoinColumn(name = "product_id", referencedColumnName = "id")
   })
+  @Schema(description = "Product bought in the order")
   private Product product;
 
   @JsonManagedReference
@@ -36,6 +41,7 @@ public class Orders {
   @JoinColumns({
           @JoinColumn(name = "user_id", referencedColumnName = "id")
   })
+  @Schema(description = "Customer that ordered")
   private User customer;
 
   /** Empty constructor. */

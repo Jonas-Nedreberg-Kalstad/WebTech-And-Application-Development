@@ -18,18 +18,24 @@ public class Product {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false, updatable = false)
+  @Schema(description = "ID of the product")
   private int id;
   @Column(name = "name", nullable = false)
+  @Schema(description = "Name of the product")
   private String productName;
   @Column(name = "price", nullable = false)
+  @Schema(description = "Price of the product")
   private double price;
   @Column(name = "description", nullable = false, length = 2000)
+  @Schema(description = "Description of the product")
   private String description;
   @Embedded
+  @Schema(description = "Image of the product")
   private Image image;
 
   @JsonBackReference
   @OneToMany(mappedBy = "product")
+  @Schema(description = "Orders of the product")
   private Set<Orders> orders = new LinkedHashSet<>();
 
   /**

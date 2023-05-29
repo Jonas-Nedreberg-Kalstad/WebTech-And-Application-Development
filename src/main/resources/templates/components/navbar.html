@@ -33,6 +33,9 @@
                     </ul>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenu" th:if="${user != null}">
                         <li>
+                            <a class="dropdown-item" th:href="@{/view-profile}">View Profile</a>
+                        </li>
+                        <li>
                             <a class="dropdown-item" th:href="@{/logout}">Logout</a>
                         </li>
                     </ul>
