@@ -66,6 +66,7 @@ public class SecurityConfiguration {
             .requestMatchers("/api/users").hasAnyAuthority(ADMIN)
             .requestMatchers("/api/users/{id}").hasAnyAuthority(ADMIN)
             .requestMatchers("/view-profile").hasAnyAuthority("user", ADMIN)
+            .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").hasAnyAuthority(ADMIN) // Allow access to Swagger UI
             .requestMatchers("/login").anonymous()
             .requestMatchers("/signup").anonymous()
             .requestMatchers("/products").permitAll()

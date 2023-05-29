@@ -28,7 +28,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/products")
-@Tag(name = "products", description = "Operations related to products")
+@Tag(name = "Product API", description = "Endpoints for managing products")
 public class ProductController {
   private final ProductService productService;
 
