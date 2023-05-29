@@ -94,6 +94,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- uses variables from the .env file instead of the system variables -->
+		<dependency>
+			<groupId>me.paulschwarz</groupId>
+			<artifactId>spring-dotenv</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -103,6 +110,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>proflex-springboot-application</finalName>
 	</build>
 
 </project>
