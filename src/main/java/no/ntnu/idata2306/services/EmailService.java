@@ -4,9 +4,13 @@ import com.sendgrid.*;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Email;
 import com.sendgrid.helpers.mail.objects.Personalization;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import no.ntnu.idata2306.model.Orders;
 import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -19,6 +23,9 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class EmailService {
 
+  private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
+
+
   /**
    * Sends an email to the specified user with the receipt for the given order.
    *
@@ -27,6 +34,9 @@ public class EmailService {
    * @param order   The Orders representing the order details.
    * @throws IOException if there is an error in sending the email.
    */
+  @Operation(summary = "Send email", description = "Sends an email to the specified user with the receipt for the given order.")
+  @ApiResponse(responseCode = "200", description = "Email sent successfully")
+  @ApiResponse(responseCode = "500", description = "Internal server error")
   public void sendEmail(User user, Product product, Orders order) throws IOException {
     Email from = new Email("omarmmo@stud.ntnu.no");
     Email to = new Email(user.getEmail());
@@ -61,10 +71,11 @@ public class EmailService {
       request.setBody(mail.build());
 
       Response response = sg.api(request);
-      System.out.println(response.getStatusCode());
-      System.out.println(response.getBody());
-      System.out.println(response.getHeaders());
+      logger.info("Email sent successfully. Status Code: {}", response.getStatusCode());
+      logger.info("Response Body: {}", response.getBody());
+      logger.info("Response Headers: {}", response.getHeaders());
     } catch (IOException e) {
+      logger.error("Error sending email", e);
       throw e;
     }
   }

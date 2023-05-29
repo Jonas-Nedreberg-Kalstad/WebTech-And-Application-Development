@@ -59,9 +59,10 @@ public class ProductService {
    * Creates a new product by saving it to the database.
    *
    * @param product The product to be created.
+   * @return The crated Product.
    */
-  public void createProduct(Product product) {
-    productRepository.save(product);
+  public Product createProduct(Product product) {
+    return productRepository.save(product);
   }
 
   /**

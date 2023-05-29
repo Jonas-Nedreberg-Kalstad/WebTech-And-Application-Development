@@ -13,5 +13,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
+
+  /**
+   * Retrieves a user from the database based on the provided email address.
+   *
+   * @param email The email address of the user.
+   * @return An Optional containing the user with the given email address, or empty if no user is found.
+   */
   Optional<User> findByEmail(String email);
 }

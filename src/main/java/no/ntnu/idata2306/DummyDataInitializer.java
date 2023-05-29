@@ -35,10 +35,10 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
   /**
    * Creates a new instance of DummyDataInitializer.
    *
-   * @param userRepository    userRepository
-   * @param productRepository productRepository
-   * @param roleRepository    roleRepository
-   * @param orderRepository   orderRepository
+   * @param userRepository    The repository for managing user entities.
+   * @param productRepository The repository for managing product entities.
+   * @param roleRepository    The repository for managing role entities.
+   * @param orderRepository   The repository for managing order entities.
    */
   public DummyDataInitializer(UserRepository userRepository,
                               ProductRepository productRepository,

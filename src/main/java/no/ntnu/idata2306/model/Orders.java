@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
  * @author Edvin Astad, Jonas N.Kalstad
  * @version 04.04.2023
  */
+@Schema(description = "Represents an order for a product")
 @Entity
 public class Orders {
   @Id

@@ -9,6 +9,7 @@ import jakarta.persistence.*;
  * @author Edvin Astad
  * @version 04.04.2023
  */
+@Schema(description = "Represents an image which is to be displayed on the website")
 @Embeddable
 public class Image {
   @Schema(description = "Image link of the product")

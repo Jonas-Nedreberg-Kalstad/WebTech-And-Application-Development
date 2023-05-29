@@ -39,9 +39,10 @@ public class OrderService {
    * Saves an order to database.
    *
    * @param order which is to be saved.
+   * @return The created order.
    */
-  public void createOrder(Orders order) {
-    this.orderRepository.save(order);
+  public Orders createOrder(Orders order) {
+    return this.orderRepository.save(order);
   }
 
   public Collection<Orders> findOrdersByUser(User user) {

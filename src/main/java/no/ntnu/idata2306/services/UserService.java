@@ -10,6 +10,8 @@ import no.ntnu.idata2306.model.User;
 import no.ntnu.idata2306.repositories.RoleRepository;
 import no.ntnu.idata2306.repositories.UserRepository;
 import no.ntnu.idata2306.security.AccessUserDetails;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +32,9 @@ public class UserService implements UserDetailsService {
   private static final int MIN_PASSWORD_LENGTH = 4;
   private final UserRepository userRepository;
   private final RoleRepository roleRepository;
+
+  private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+
 
   /**
    * creates a new instance of userService.
@@ -60,28 +65,36 @@ public class UserService implements UserDetailsService {
    */
   public void createUserForSignUp(SignUpDto userInfo) {
     if (!validEmail(userInfo.getEmail())) {
+      logger.error("Invalid email format: {}", userInfo.getEmail());
       throw new IllegalArgumentException("Invalid email format.");
     }
 
     if (!validPassword(userInfo.getPassword())) {
+      logger.error("Invalid password: {}", userInfo.getEmail());
       throw new IllegalArgumentException("Invalid password.");
     }
 
     if (userInfo.getFirstName().trim().equals("") || userInfo.getLastName().trim().equals("")) {
+      logger.error("Name fields must be filled out for user: {}", userInfo.getEmail());
       throw new IllegalArgumentException("Name fields must be filled out.");
     }
 
     try {
       loadUserByUsername(userInfo.getEmail());
+      logger.error("Email already registered: {}", userInfo.getEmail());
       throw new IllegalArgumentException("Email already registered.");
     } catch (NullPointerException e) {
       User user = new User(userInfo.getFirstName(), userInfo.getLastName(), userInfo.getEmail(), createHash(userInfo.getPassword()));
 
-      Role userRole = roleRepository.findByName("user").orElseThrow(() -> new IllegalArgumentException("Role user not found"));
+      Role userRole = roleRepository.findByName("user").orElseThrow(() -> {
+        logger.error("Role user not found");
+        return new IllegalArgumentException("Role user not found");
+      });
 
       user.getRoles().add(userRole);
 
       userRepository.save(user);
+      logger.info("New user created with email: {}", userInfo.getEmail());
 
     }
   }
@@ -122,8 +135,10 @@ public class UserService implements UserDetailsService {
       user.setLastName(updatedUser.getLastName());
       user.setEmail(updatedUser.getEmail());
       user.setPassword(createHash(updatedUser.getPassword()));
+      logger.info("User updated: {}", updatedUser.getEmail());
       return userRepository.save(user);
     }
+    logger.error("User not found with ID: {}", id);
     return null;
   }
 
@@ -133,7 +148,13 @@ public class UserService implements UserDetailsService {
    * @param id The ID of the user to be deleted.
    */
   public void deleteUser(int id) {
-    userRepository.deleteById(id);
+    Optional<User> user = userRepository.findById(id);
+    if (user.isPresent()) {
+      userRepository.deleteById(id);
+      logger.info("User deleted with ID: {}", id);
+    } else {
+      logger.error("User not found with ID: {}", id);
+    }
   }
 
   /**
@@ -159,6 +180,7 @@ public class UserService implements UserDetailsService {
     if (user.isPresent()) {
       return new AccessUserDetails(user.get());
     } else {
+      logger.error("User with email: {} not found.", email);
       throw new NullPointerException("User with email: " + email + " not found.");
     }
   }
