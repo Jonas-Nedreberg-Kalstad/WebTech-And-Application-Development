@@ -338,10 +338,17 @@ Get Started
 
 }
 
-.ProFlex-color{
-    background-color: #0a4275;
-}
 
+/*
+Testimonials
+ */
+
+
+.Locked-testimonials{
+    height: 100vh;
+    align-content: center;
+
+}
 .testimonials{
     justify-content: center;
     align-items: center;
@@ -350,6 +357,52 @@ Get Started
 }
 .testimonials h1{
     text-align: center;
-    padding-bottom: 8%;
+    padding-bottom: 12%;
     color: #34348d;
 }
+
+
+.testimonial-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.testimonial-box {
+    background-color: #0a95dc;
+    padding: 20px 70px;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: 10px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.2);
+
+}
+
+.testimonial-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.testimonial-age {
+    font-size: 14px;
+    color: #f1bd2a;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.testimonial-message {
+    font-size: 16px;
+    line-height: 1.5;
+    text-space: 2px;
+    color: white;
+}
+
+.ProFlex-color{
+    background-color: #0a4275;
+}
+
