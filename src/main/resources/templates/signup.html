@@ -25,23 +25,23 @@
                     <form method="post" th:action="@{/signup}" th:object="${signupData}">
                         <div class="input-field">
                             <input type="text" class="input" id="firstName" required autocomplete="off"
-                                   name="firstName">
+                                   name="firstName" aria-label="Input field for typing in your first name">
                             <label for="firstName">First Name</label>
                         </div>
                         <div class="input-field">
-                            <input type="text" class="input" id="lastName" required autocomplete="off" name="lastName">
+                            <input type="text" class="input" id="lastName" required autocomplete="off" name="lastName" aria-label="Input field for typing in your last name">
                             <label for="lastName">Last Name</label>
                         </div>
                         <div class="input-field">
-                            <input type="text" class="input" id="email" required autocomplete="off" name="email">
+                            <input type="text" class="input" id="email" required autocomplete="off" name="email" aria-label="Input field for typing in your email">
                             <label for="email">Email</label>
                         </div>
                         <div class="input-field">
-                            <input type="password" class="input" id="password" required name="password">
+                            <input type="password" class="input" id="password" required name="password" aria-label="Input field for typing in your password">
                             <label for="password">Password</label>
                         </div>
                         <div class="input-field">
-                            <input type="password" class="input" id="confirmPassword" required name="confirmPassword">
+                            <input type="password" class="input" id="confirmPassword" required name="confirmPassword" aria-label="Input field for confirming your password by typing it in again">
                             <label for="confirmPassword">Confirm Password</label>
                         </div>
                         <div class="input-field">
@@ -49,7 +49,7 @@
                         </div>
                     </form>
                     <div class="signin">
-                        <span>Already have an account? <a href="login">Log in here</a></span>
+                        <span>Already have an account? <a href="login" aria-label="Link to the logg in page>Log in here</a></span>
                     </div>
                 </div>
             </div>

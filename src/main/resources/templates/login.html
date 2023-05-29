@@ -24,11 +24,11 @@
           <header>Logg in</header>
           <form method="post" th:action="@{/login}">
             <div class="input-field">
-              <input type="text" class="input" id="email" required autocomplete="off" name="email">
+              <input type="text" class="input" id="email" required autocomplete="off" name="email" aria-label="Input field for typing your email">
               <label for="email">Email</label>
             </div>
             <div class="input-field">
-              <input type="password" class="input" id="password" required name="password">
+              <input type="password" class="input" id="password" required name="password" aria-label="Input field for typing your password">
               <label for="password">Password</label>
             </div>
             <div class="input-field">
