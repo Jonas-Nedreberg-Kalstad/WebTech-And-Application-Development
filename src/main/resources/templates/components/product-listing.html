@@ -5,9 +5,10 @@
         <div class="card mb-3">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <a th:href="@{'/products/' + ${product.id}}">
+                    <a th:href="@{'/products/' + ${product.id}}" th:attr="aria-label='View Product Details for: ' + ${product.productName}">
                         <img class="float-left" th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}" height="6000" width="4000"
-                             th:alt="${product.image.imageDescription}" src=""/>
+                             th:alt="${product.image.imageDescription}"
+                             th:attr="aria-label=${product.image.imageDescription}" src=""/>
                     </a>
                 </div>
                 <div class="col-md-8">
