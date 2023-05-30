@@ -322,9 +322,6 @@ Get Started
         display: flex;
     }
 
-    .product-image{
-        max-height: 266px;
-    }
     .popular-products h1{
         text-align: center;
         padding-top: 50px;
@@ -372,7 +369,7 @@ Testimonials
 
 
 .testimonial-box {
-    background-color: #0a95dc;
+    background-color: lightskyblue;
     padding: 20px 70px;
     border-radius: 5px;
     max-width: 600px;
@@ -390,7 +387,7 @@ Testimonials
 
 .testimonial-age {
     font-size: 14px;
-    color: #fbb13c;
+    color: darkred;
     margin-bottom: 10px;
     text-align: center;
 }
@@ -399,7 +396,7 @@ Testimonials
     font-size: 16px;
     line-height: 1.5;
     text-space: 2px;
-    color: white;
+    color: #333333;
 }
 
 .ProFlex-color{
