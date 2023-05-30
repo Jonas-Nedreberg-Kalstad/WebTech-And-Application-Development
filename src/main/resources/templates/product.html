@@ -31,10 +31,10 @@
 
         <button th:if="${user != null}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Buy Now</button>
       </div>
-      <div class="information">
+      <details class="information">
         <h3>Product Description</h3>
         <p th:text="${product.description}"></p>
-      </div>
+      </details>
     </div>
   </section>
 </main>
