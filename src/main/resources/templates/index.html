@@ -72,7 +72,7 @@
                 <a th:href="@{'/products/' + ${product.id}}" class="product-text-decoration-none" th:attr="aria-label='View Product Details for: ' + ${product.productName}">
                     <div class="box">
                         <div class="product-image">
-                            <img class="float-left" th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}" height="6000" width="4000"
+                            <img class="float-left" th:src="@{/images/300px {imageLink}(imageLink=${product.image.imageLink})}" height="6000" width="4000"
                                  th:alt="${product.image.imageDescription}"
                                  th:attr="aria-label=${product.image.imageDescription}" src=""/>
                         </div>
