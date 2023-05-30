@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import no.ntnu.idata2306.dto.SignUpDto;
-import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.model.Role;
 import no.ntnu.idata2306.model.User;
 import no.ntnu.idata2306.repositories.RoleRepository;
@@ -80,6 +79,7 @@ public class UserService implements UserDetailsService {
     }
 
     try {
+      // Thrown when user is found
       loadUserByUsername(userInfo.getEmail());
       logger.error("Email already registered: {}", userInfo.getEmail());
       throw new IllegalArgumentException("Email already registered.");
