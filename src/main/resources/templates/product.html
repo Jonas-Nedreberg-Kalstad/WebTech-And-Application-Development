@@ -15,8 +15,8 @@
 
 <nav th:replace="~{components/navbar}"></nav>
 
-<div class="Wrapper">
-  <div class="container main">
+<main class="Wrapper">
+  <section class="container main">
     <div class="row">
       <div class="col-md-6 image-box">
         <img class="float-left" th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}" height="6000" width="4000"
@@ -36,8 +36,8 @@
         <p th:text="${product.description}"></p>
       </div>
     </div>
-  </div>
-</div>
+  </section>
+</main>
 
 
 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" data-bs-backdrop="static" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
