@@ -3,6 +3,7 @@ package no.ntnu.idata2306.services;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+
 import no.ntnu.idata2306.dto.SignUpDto;
 import no.ntnu.idata2306.model.Role;
 import no.ntnu.idata2306.model.User;
@@ -162,7 +163,7 @@ public class UserService implements UserDetailsService {
    *
    * @param user user to have admin added to it
    */
-  public void setAdminRole(User user){
+  public void setAdminRole(User user) {
     Role adminRole = roleRepository.findByName("admin").orElseThrow(() -> new IllegalArgumentException("Role admin not found"));
     user.getRoles().add(adminRole);
   }

@@ -71,6 +71,7 @@ public class Role {
 
   /**
    * Sets the value of the users field to given value.
+   *
    * @param users users
    */
   public void setUsers(Set<User> users) {

@@ -3,6 +3,7 @@ package no.ntnu.idata2306.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -107,7 +108,9 @@ public class Product {
     return image;
   }
 
-  /** returns order */
+  /**
+   * returns order
+   */
   public Set<Orders> getOrders() {
     return orders;
   }

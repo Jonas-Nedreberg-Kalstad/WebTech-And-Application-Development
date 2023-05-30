@@ -5,7 +5,9 @@ import no.ntnu.idata2306.repositories.OrderRepository;
 import no.ntnu.idata2306.repositories.ProductRepository;
 import no.ntnu.idata2306.repositories.RoleRepository;
 import no.ntnu.idata2306.repositories.UserRepository;
+
 import java.time.LocalDateTime;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -54,10 +56,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
   public void onApplicationEvent(ApplicationReadyEvent event) {
 
 
-
-
     logger.info("Importing test data...");
-
 
 
     if (userRepository.count() == 0 && productRepository.count() == 0 && orderRepository.count() == 0) {
@@ -79,7 +78,6 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
       Image image6 = new Image("ProFlex Financial Advisor Pro.jpg",
               "Image of a computer on a desk with bar charts on it ");
-
 
 
       Role user = new Role("user");

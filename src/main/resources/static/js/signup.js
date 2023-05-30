@@ -2,7 +2,7 @@
 const emailInput = document.getElementById('email');
 const emailError = document.getElementById('email-error');
 
-emailInput.addEventListener('input', function() {
+emailInput.addEventListener('input', function () {
     if (!emailInput.validity.valid) {
         emailError.style.display = 'block';
     } else {

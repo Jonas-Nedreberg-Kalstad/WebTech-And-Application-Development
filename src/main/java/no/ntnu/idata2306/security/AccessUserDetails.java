@@ -1,6 +1,7 @@
 package no.ntnu.idata2306.security;
 
 import java.util.*;
+
 import no.ntnu.idata2306.model.Role;
 import no.ntnu.idata2306.model.User;
 import org.springframework.security.core.GrantedAuthority;

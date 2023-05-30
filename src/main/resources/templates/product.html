@@ -1,89 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Product</title>
-  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="/images/favicon.png" type="image/png">
+    <meta charset="UTF-8">
+    <title>Product</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.png" type="image/png">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/product.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,600&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <nav th:replace="~{components/navbar}"></nav>
 
 <main class="Wrapper">
-  <section class="container main">
-    <div class="row">
-      <div class="col-md-6 image-box">
-        <img class="float-left" th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}" height="6000" width="4000"
-             th:alt="${product.image.imageDescription}"
-             th:attr="aria-label=${product.image.imageDescription}" src=""/>
-      </div>
-      <div class="col-md-6 buy-box">
-        <h2 th:text="${product.productName}"></h2>
-        <p>Categories: tax, legal, accounting</p>
-        <h3 th:text="${#numbers.formatDecimal(product.price, 0, 0)} + ' NOK'"></h3>
-        <button th:if="${user == null}" class="btn btn-primary" onclick="window.location.href='/login'">Buy Now</button>
+    <section class="container main">
+        <div class="row">
+            <div class="col-md-6 image-box">
+                <img class="float-left" th:src="@{/images/{imageLink}(imageLink=${product.image.imageLink})}"
+                     height="6000" width="4000"
+                     th:alt="${product.image.imageDescription}"
+                     th:attr="aria-label=${product.image.imageDescription}" src=""/>
+            </div>
+            <div class="col-md-6 buy-box">
+                <h2 th:text="${product.productName}"></h2>
+                <p>Categories: tax, legal, accounting</p>
+                <h3 th:text="${#numbers.formatDecimal(product.price, 0, 0)} + ' NOK'"></h3>
+                <button th:if="${user == null}" class="btn btn-primary" onclick="window.location.href='/login'">Buy
+                    Now
+                </button>
 
-        <button th:if="${user != null}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Buy Now</button>
-      </div>
-      <div class="information">
-        <h3>Product Description</h3>
-        <p th:text="${product.description}"></p>
-      </div>
-    </div>
-  </section>
+                <button th:if="${user != null}" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalToggle">Buy Now
+                </button>
+            </div>
+            <div class="information">
+                <h3>Product Description</h3>
+                <p th:text="${product.description}"></p>
+            </div>
+        </div>
+    </section>
 </main>
 
 
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" data-bs-backdrop="static" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Payment Gateway</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- other modal content -->
-        <form method="post" th:action="@{/products/{id}(id=${product.id})}">
-          <div class="input-field space icon-relative">
-            <label class="label">Card holder:</label>
-            <input type="text" class="input" placeholder="Card Holder" required>
-            <i class="fas fa-user"></i>
-          </div>
-          <div class="input-field space icon-relative">
-            <label class="label">Card number:</label>
-            <input type="text" class="input" data-mask="0000 0000 0000 0000" placeholder="Card Number" required>
-            <i class="far fa-credit-card"></i>
-          </div>
-          <div class="input-field-grp space">
-            <div class="card-item icon-relative">
-              <label class="label">Expiry date:</label>
-              <input type="text" name="expiry-data" class="input" placeholder="00 / 00" data-mask="00/00" required>
-              <i class="far fa-calendar-alt"></i>
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" data-bs-backdrop="static"
+     aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Payment Gateway</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="card-item icon-relative">
-              <label class="label">CVC:</label>
-              <input type="text" class="input" data-mask="000" placeholder="000" required>
-              <i class="fas fa-lock"></i>
+            <div class="modal-body">
+                <!-- other modal content -->
+                <form method="post" th:action="@{/products/{id}(id=${product.id})}">
+                    <div class="input-field space icon-relative">
+                        <label class="label">Card holder:</label>
+                        <input type="text" class="input" placeholder="Card Holder" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="input-field space icon-relative">
+                        <label class="label">Card number:</label>
+                        <input type="text" class="input" data-mask="0000 0000 0000 0000" placeholder="Card Number"
+                               required>
+                        <i class="far fa-credit-card"></i>
+                    </div>
+                    <div class="input-field-grp space">
+                        <div class="card-item icon-relative">
+                            <label class="label">Expiry date:</label>
+                            <input type="text" name="expiry-data" class="input" placeholder="00 / 00" data-mask="00/00"
+                                   required>
+                            <i class="far fa-calendar-alt"></i>
+                        </div>
+                        <div class="card-item icon-relative">
+                            <label class="label">CVC:</label>
+                            <input type="text" class="input" data-mask="000" placeholder="000" required>
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    <p th:text="'Product: ' + ${product.productName}"></p>
+                    <p th:text="'Amount: ' + ${#numbers.formatDecimal(product.price, 0, 0)} + ' NOK'"></p>
+                    <div class="purchase d-flex justify-content-center">
+                        <button class="btn btn-primary" type="submit">Purchase</button>
+                    </div>
+                </form>
             </div>
-          </div>
-          <p th:text="'Product: ' + ${product.productName}"></p>
-          <p th:text="'Amount: ' + ${#numbers.formatDecimal(product.price, 0, 0)} + ' NOK'"></p>
-          <div class="purchase d-flex justify-content-center">
-            <button class="btn btn-primary" type="submit">Purchase</button>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
-      </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-target="#exampleModalToggle"
+                        data-bs-toggle="modal">Back
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -93,6 +103,8 @@
 
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 
 </html>

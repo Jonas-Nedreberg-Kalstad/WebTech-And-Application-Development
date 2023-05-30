@@ -3,11 +3,11 @@ package no.ntnu.idata2306.services;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+
 import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.repositories.ProductRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
 
 
 /**

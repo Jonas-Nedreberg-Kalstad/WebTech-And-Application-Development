@@ -142,7 +142,7 @@ public class PageController {
    * Processes the purchase form data (HTTP POST) and handles the purchase process.
    * Sends an email containing purchase receipt to the user after purchase.
    *
-   * @param id The ID of the product being purchased.
+   * @param id                  The ID of the product being purchased.
    * @param httpServletResponse The HttpServletResponse object for redirecting to the home page.
    * @return The ResponseEntity containing the response status and body.
    */

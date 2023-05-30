@@ -18,8 +18,8 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
    * Handles the access denied exception by setting the response status to 403 Forbidden
    * and redirecting the user to the access-denied page.
    *
-   * @param request The HttpServletRequest representing the current request.
-   * @param response The HttpServletResponse representing the response to be sent.
+   * @param request               The HttpServletRequest representing the current request.
+   * @param response              The HttpServletResponse representing the response to be sent.
    * @param accessDeniedException The AccessDeniedException that occurred.
    * @throws IOException If an I/O error occurs during the redirect.
    */

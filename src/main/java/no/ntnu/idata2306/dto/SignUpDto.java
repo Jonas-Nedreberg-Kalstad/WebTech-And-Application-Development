@@ -33,6 +33,7 @@ public class SignUpDto {
 
   /**
    * Sets email
+   *
    * @param email email to be set
    */
   public void setEmail(String email) {
@@ -48,6 +49,7 @@ public class SignUpDto {
 
   /**
    * Sets firstName
+   *
    * @param firstName firstName to be set
    */
   public void setFirstName(String firstName) {
@@ -63,6 +65,7 @@ public class SignUpDto {
 
   /**
    * Sets lastName
+   *
    * @param lastName lastName to be set
    */
   public void setLastName(String lastName) {
@@ -78,6 +81,7 @@ public class SignUpDto {
 
   /**
    * Sets password
+   *
    * @param password password to be set
    */
   public void setPassword(String password) {

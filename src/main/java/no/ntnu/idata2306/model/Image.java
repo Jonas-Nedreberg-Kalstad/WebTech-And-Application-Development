@@ -18,14 +18,16 @@ public class Image {
   @Schema(description = "Image description of the product")
   private String imageDescription;
 
-  /** Empty constructor. */
+  /**
+   * Empty constructor.
+   */
   public Image() {
   }
 
   /**
    * Creates a new instance of Image.
    *
-   * @param imageLink image
+   * @param imageLink   image
    * @param description description
    */
   public Image(String imageLink, String description) {
@@ -33,12 +35,16 @@ public class Image {
     this.imageDescription = description;
   }
 
-  /** Returns imageLink. */
+  /**
+   * Returns imageLink.
+   */
   public String getImageLink() {
     return imageLink;
   }
 
-  /** Returns imageDescription. */
+  /**
+   * Returns imageDescription.
+   */
   public String getImageDescription() {
     return imageDescription;
   }

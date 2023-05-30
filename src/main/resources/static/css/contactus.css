@@ -1,10 +1,11 @@
-*{
+* {
     margin: 0px;
-    padding:0px;
+    padding: 0px;
     box-sizing: border-box;
 
 }
-body{
+
+body {
     width: 100%;
     font-family: 'Nunito Sans', sans-serif;
 
@@ -14,7 +15,7 @@ body{
     background-color: #ececec;
 }
 
-.as-banner-image{
+.as-banner-image {
     background-image: url("/images/free image13big.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -24,37 +25,39 @@ body{
 }
 
 @media (max-width: 600px) {
-    .as-banner-image{
+    .as-banner-image {
         background-image: url("/images/free image13 smal.jpg");
     }
 }
 
 @media (min-width: 601px) and (max-width: 900px) {
-    .as-banner-image{
+    .as-banner-image {
         background-image: url("/images/free image13.jpg");
 
     }
 }
 
 @media (min-width: 901px) {
-    .as-banner-image{
+    .as-banner-image {
         background-image: url("/images/free image13big.jpg");
 
     }
 }
-.title h1{
+
+.title h1 {
     text-align: center;
     padding-top: 50px;
     font-size: 70px;
     color: #164faf;
 }
 
-.under-title h2{
+.under-title h2 {
     text-align: center;
     padding-top: 50px;
     font-size: 40px;
 }
-.services{
+
+.services {
     width: 85%;
     display: flex;
     justify-content: space-between;
@@ -62,29 +65,33 @@ body{
     align-items: stretch;
     margin: 75px auto;
 }
-.box{
+
+.box {
     width: 100%;
-    flex:1;
+    flex: 1;
     justify-content: space-between;
     flex-direction: column;
-    margin:0px 20px;
-    padding:20px 20px;
+    margin: 0px 20px;
+    padding: 20px 20px;
     background-color: #ececec;
     border-radius: 15px;
     border: 1px solid #9f9797;
     height: auto;
 }
-.box .icon{
-    font-size:40px;
+
+.box .icon {
+    font-size: 40px;
     margin-bottom: 10px;
     text-align: center;
 }
-.box h2{
+
+.box h2 {
     font-size: 28px;
     color: #164faf;
     margin-bottom: 20px;
     text-align: center;
 }
+
 .contact {
     padding: 10px;
     font-size: 20px;
@@ -92,7 +99,7 @@ body{
     color: #070707;
 }
 
-.descripton{
+.descripton {
     padding-left: 10px;
     font-size: 20px;
     margin-bottom: 10px;
@@ -110,28 +117,30 @@ body{
     flex-grow: 1;
 }
 
-@media screen and (max-width: 800px){
-    .services{
-        display:flex;
+@media screen and (max-width: 800px) {
+    .services {
+        display: flex;
         flex-direction: column;
         justify-content: space-between;
 
     }
-    .box{
+
+    .box {
         width: 100%;
         display: flex;
         margin: 20px 0px;
     }
 }
 
-@media (min-width: 801px) and (max-width: 1200px){
-    .services{
-        display:flex;
+@media (min-width: 801px) and (max-width: 1200px) {
+    .services {
+        display: flex;
         flex-direction: column;
         justify-content: space-between;
 
     }
-    .box{
+
+    .box {
         text-align: center;
         width: 100%;
         display: flex;

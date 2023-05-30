@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import no.ntnu.idata2306.dto.SignUpDto;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -123,17 +124,23 @@ public class User {
     return this.password;
   }
 
-  /** returns active */
+  /**
+   * returns active
+   */
   public Boolean getActive() {
     return active;
   }
 
-  /** returns roles */
+  /**
+   * returns roles
+   */
   public Set<Role> getRoles() {
     return roles;
   }
 
-  /** Returns orders */
+  /**
+   * Returns orders
+   */
   public Set<Orders> getOrders() {
     return orders;
   }

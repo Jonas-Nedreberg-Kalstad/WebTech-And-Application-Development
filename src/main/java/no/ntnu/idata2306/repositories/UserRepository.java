@@ -1,6 +1,7 @@
 package no.ntnu.idata2306.repositories;
 
 import java.util.Optional;
+
 import no.ntnu.idata2306.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

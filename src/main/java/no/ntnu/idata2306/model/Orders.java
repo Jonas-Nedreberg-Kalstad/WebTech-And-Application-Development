@@ -45,15 +45,17 @@ public class Orders {
   @Schema(description = "Customer that ordered")
   private User customer;
 
-  /** Empty constructor. */
+  /**
+   * Empty constructor.
+   */
   public Orders() {
   }
 
   /**
    * Creates a new instance of Orders.
    *
-   * @param date date of sale
-   * @param product product
+   * @param date     date of sale
+   * @param product  product
    * @param customer costumer
    */
   public Orders(LocalDateTime date, Product product, User customer) {
@@ -63,27 +65,37 @@ public class Orders {
     this.customer = customer;
   }
 
-  /** Returns id. */
+  /**
+   * Returns id.
+   */
   public int getId() {
     return id;
   }
 
-  /** Returns salePrice. */
+  /**
+   * Returns salePrice.
+   */
   public double getSalePrice() {
     return salePrice;
   }
 
-  /** Returns date. */
+  /**
+   * Returns date.
+   */
   public LocalDateTime getDate() {
     return date;
   }
 
-  /** Returns product. */
+  /**
+   * Returns product.
+   */
   public Product getProduct() {
     return product;
   }
 
-  /** Returns user. */
+  /**
+   * Returns user.
+   */
   public User getCustomer() {
     return customer;
   }

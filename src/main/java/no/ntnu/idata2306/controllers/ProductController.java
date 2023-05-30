@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import no.ntnu.idata2306.model.Orders;
 import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.services.ProductService;
 import org.slf4j.Logger;
@@ -108,7 +107,7 @@ public class ProductController {
   /**
    * Updates an existing product.
    *
-   * @param id The ID of the product to be updated.
+   * @param id             The ID of the product to be updated.
    * @param updatedProduct The updated Product object.
    * @return ResponseEntity containing the updated Product (Optional) and HTTP status code 200 (OK) if successful,
    * or HTTP status code 404 (NOT_FOUND) if the product with the given ID doesn't exist.

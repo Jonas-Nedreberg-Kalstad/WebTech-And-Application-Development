@@ -50,8 +50,8 @@ public class OrderService {
     orderRepository.findAll()
             .forEach(order -> {
               if (order.getCustomer() == user) {
-              ordersByUser.add(order);
-            }
+                ordersByUser.add(order);
+              }
             });
     return ordersByUser;
   }

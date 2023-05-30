@@ -62,7 +62,7 @@ public class SecurityConfiguration {
     http.csrf().disable()
             .authorizeHttpRequests()
             .requestMatchers("/api/products/{id}").hasAuthority(ADMIN)
-            .requestMatchers("/api/products").hasAnyAuthority( ADMIN)
+            .requestMatchers("/api/products").hasAnyAuthority(ADMIN)
             .requestMatchers("/api/users").hasAnyAuthority(ADMIN)
             .requestMatchers("/api/users/{id}").hasAnyAuthority(ADMIN)
             .requestMatchers("/view-profile").hasAnyAuthority("user", ADMIN)

@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import no.ntnu.idata2306.model.Orders;
-import no.ntnu.idata2306.model.Product;
 import no.ntnu.idata2306.services.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +32,6 @@ public class OrderController {
   private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
   private static final String ORDER_NOT_FOUND = "Order not found with ID: {}";
-
 
 
   /**
@@ -107,7 +105,7 @@ public class OrderController {
   /**
    * Updates an existing order.
    *
-   * @param id The ID of the order to be updated.
+   * @param id           The ID of the order to be updated.
    * @param updatedOrder The updated order object.
    * @return ResponseEntity containing the updated order (Optional) and HTTP status code 200 (OK) if successful,
    * or HTTP status code 404 (NOT_FOUND) if the order with the given ID doesn't exist.
