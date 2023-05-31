@@ -4,6 +4,12 @@
 
 In this project we created a online web store which would sell an arrange of digital products. We accomplished this with a monolithic system design where we used spring boot (java) as the backend, and MySQL as the database system.
 
+This project is hosted on a remote server given to us which runs on the domain:
+
+[group13.web-tek.ninja](http://group13.web-tek.ninja)
+
+this domain is only accessible through NTNU's networks.
+
 ## How to run
 
 clone this repository, and run the application.
