@@ -101,7 +101,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
               "Jenny",
               "Dow",
               "Jend@ntnu.no",
-              BCrypt.hashpw("FuckIDATA2024", BCrypt.gensalt()));
+              BCrypt.hashpw("12RulesForLife", BCrypt.gensalt()));
 
       jenny.addRole(user);
 
